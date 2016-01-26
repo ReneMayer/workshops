@@ -1,0 +1,189 @@
+"Country" "HealthExpPC" "Year"
+"1" "Afghanistan" 13.5 2004
+"2" "Albania" 157.1 2004
+"3" "Algeria" 93.9 2004
+"4" "Andorra" 2453.1 2004
+"5" "Angola" 25.5 2004
+"6" "Antigua and Barbuda" 485.3 2004
+"7" "Argentina" 382.9 2004
+"8" "Armenia" 63 2004
+"9" "Australia" 3123.3 2004
+"10" "Austria" 3683.31 2004
+"11" "Azerbaijan" 37.2 2004
+"12" "Bahamas" 1211 2004
+"13" "Bahrain" 619.8 2004
+"14" "Bangladesh" 13.7 2004
+"15" "Barbados" 744.8 2004
+"16" "Belarus" 146.7 2004
+"17" "Belgium" 3363.2 2004
+"18" "Belize" 200.5 2004
+"19" "Benin" 24.2 2004
+"20" "Bhutan" 15.4 2004
+"21" "Bolivia" 65.8 2004
+"22" "Bosnia and Herzegovina" 197.6 2004
+"23" "Botswana" 328.6 2004
+"24" "Brazil" 289.5 2004
+"25" "Brunei" 473.2 2004
+"26" "Bulgaria" 250.8 2004
+"27" "Burkina Faso" 24.2 2004
+"28" "Burma" 4.5 2004
+"29" "Burundi" 3 2004
+"30" "Cambodia" 23.6 2004
+"31" "Cameroon" 50.7 2004
+"32" "Canada" 3037.6 2004
+"33" "Cape Verde" 97.8 2004
+"34" "Central African Republic" 13.2 2004
+"35" "Chad" 19.6 2004
+"36" "Chile" 359 2004
+"37" "China" 70.51 2004
+"38" "Colombia" 168.3 2004
+"39" "Comoros" 13.2 2004
+"40" "Congo, Democratic Republic of the" 4.7 2004
+"41" "Congo, Republic of the" 27.6 2004
+"42" "Costa Rica" 289.7 2004
+"43" "Cote d'Ivoire" 33 2004
+"44" "Croatia" 609.4 2004
+"45" "Cuba" 229.8 2004
+"46" "Cyprus" 1109.4 2004
+"47" "Czech Republic" 770.8 2004
+"48" "Denmark" 3896.6 2004
+"49" "Djibouti" 53.1 2004
+"50" "Dominica" 215.1 2004
+"51" "Dominican Republic" 148.1 2004
+"52" "East Timor" 43.5 2004
+"53" "Ecuador" 127.3 2004
+"54" "Egypt" 64 2004
+"55" "El Salvador" 183.8 2004
+"56" "Equatorial Guinea" 168.2 2004
+"57" "Eritrea" 9.9 2004
+"58" "Estonia" 462.8 2004
+"59" "Ethiopia" 5.6 2004
+"60" "Fiji" 147.6 2004
+"61" "Finland" 2664.3 2004
+"62" "France" 3464 2004
+"63" "Gabon" 231.3 2004
+"64" "The Gambia" 18.5 2004
+"65" "Georgia" 60 2004
+"66" "Germany" 3521.4 2004
+"67" "Ghana" 27.2 2004
+"68" "Greece" 1879.3 2004
+"69" "Grenada" 292.9 2004
+"70" "Guatemala" 126.9 2004
+"71" "Guinea" 21.8 2004
+"72" "Guinea-Bissau" 8.7 2004
+"73" "Guyana" 55.9 2004
+"74" "Haiti" 33 2004
+"75" "Honduras" 77.1 2004
+"76" "Hungary" 800.2 2004
+"77" "Iceland" 4413 2004
+"78" "India" 31.4 2004
+"79" "Indonesia" 32.5 2004
+"80" "Iran" 157.8 2004
+"81" "Iraq" 57.7 2004
+"82" "Ireland" 3234.1 2004
+"83" "Israel" 1533.5 2004
+"84" "Italy" 2579.6 2004
+"85" "Jamaica" 175.6 2004
+"86" "Japan" 2831.1 2004
+"87" "Jordan" 199.9 2004
+"88" "Kazakhstan" 109.1 2004
+"89" "Kenya" 20.1 2004
+"90" "Kiribati" 111.9 2004
+"91" "Korea, North" 0.3 2004
+"92" "Korea, South" 787 2004
+"93" "Kuwait" 632.8 2004
+"94" "Kyrgyzstan" 23.7 2004
+"95" "Laos" 16.8 2004
+"96" "Latvia" 417.8 2004
+"97" "Lebanon" 670.2 2004
+"98" "Lesotho" 49.4 2004
+"99" "Liberia" 8.6 2004
+"100" "Libya" 195.4 2004
+"101" "Lithuania" 423.8 2004
+"102" "Luxembourg" 5904 2004
+"103" "Macedonia" 211.6 2004
+"104" "Madagascar" 7.3 2004
+"105" "Malawi" 19.3 2004
+"106" "Malaysia" 180.1 2004
+"107" "Maldives" 180.1 2004
+"108" "Mali" 23.8 2004
+"109" "Malta" 1239.4 2004
+"110" "Marshall Islands" 271.9 2004
+"111" "Mauritania" 14.5 2004
+"112" "Mauritius" 222.3 2004
+"113" "Mexico" 424.3 2004
+"114" "Federated States of Micronesia" 155.8 2004
+"115" "Moldova" 45.7 2004
+"116" "Monaco" 5329.5 2004
+"117" "Mongolia" 37.3 2004
+"118" "Morocco" 82.2 2004
+"119" "Mozambique" 12.3 2004
+"120" "Namibia" 189.8 2004
+"121" "Nepal" 14.1 2004
+"122" "Netherlands" 3441.7 2004
+"123" "New Zealand" 2039.6 2004
+"124" "Nicaragua" 67.1 2004
+"125" "Niger" 8.6 2004
+"126" "Nigeria" 23 2004
+"127" "Norway" 5404.7 2004
+"128" "Oman" 294.6 2004
+"129" "Pakistan" 13.6 2004
+"130" "Palau" 655.8 2004
+"131" "Panama" 342.7 2004
+"132" "Papua New Guinea" 30.4 2004
+"133" "Paraguay" 88.4 2004
+"134" "Peru" 103.7 2004
+"135" "Philippines" 36.1 2004
+"136" "Poland" 410.7 2004
+"137" "Portugal" 1665.1 2004
+"138" "Qatar" 992.4 2004
+"139" "Romania" 177.6 2004
+"140" "Russia" 244.7 2004
+"141" "Rwanda" 15.5 2004
+"142" "Saint Kitts and Nevis" 500.4 2004
+"143" "Saint Lucia" 232.4 2004
+"144" "Saint Vincent and the Grenadines" 210.2 2004
+"145" "Samoa" 108.9 2004
+"146" "San Marino" 3355.7 2004
+"147" "Sao Tome and Principe" 47.8 2004
+"148" "Saudi Arabia" 348 2004
+"149" "Senegal" 39.4 2004
+"150" "Serbia" 218.7 2004
+"151" "Seychelles" 534.4 2004
+"152" "Sierra Leone" 6.6 2004
+"153" "Singapore" 942.9 2004
+"154" "Slovakia" 565.1 2004
+"155" "Slovenia" 1438.2 2004
+"156" "Solomon Islands" 34.8 2004
+"157" "Somalia" 8 2001
+"158" "South Africa" 390.2 2004
+"159" "Spain" 1971.2 2004
+"160" "Sri Lanka" 42.5 2004
+"161" "Sudan" 24.7 2004
+"162" "Suriname" 194.2 2004
+"163" "Swaziland" 145.8 2004
+"164" "Sweden" 3532 2004
+"165" "Switzerland" 5571.9 2004
+"166" "Syria" 57.8 2004
+"167" "Tajikistan" 14.1 2004
+"168" "Tanzania" 12 2004
+"169" "Thailand" 88.1 2004
+"170" "Togo" 17.9 2004
+"171" "Tonga" 117.1 2004
+"172" "Trinidad and Tobago" 329.3 2004
+"173" "Tunisia" 126 2003
+"174" "Turkey" 324.8 2004
+"175" "Turkmenistan" 124.4 2004
+"176" "Uganda" 19 2004
+"177" "Ukraine" 89.7 2004
+"178" "United Arab Emirates" 711.2 2004
+"179" "United Kingdom" 2899.7 2004
+"180" "United States" 6096.2 2004
+"181" "Uruguay" 314.7 2004
+"182" "Uzbekistan" 23.2 2004
+"183" "Vanuatu" 58 2004
+"184" "Venezuela" 195.6 2004
+"185" "Vietnam" 30 2004
+"186" "Yemen" 33.9 2004
+"187" "Zambia" 29.6 2004
+"188" "Zimbabwe" 27.2 2004
