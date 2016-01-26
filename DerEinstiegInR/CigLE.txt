@@ -1,0 +1,190 @@
+"Country" "Continent" "LE" "CigCon"
+"1" "Afghanistan" "Asia" 35.5 98
+"2" "Albania" "Europe" 61.4 NA
+"3" "Algeria" "Africa" 60.6 1021
+"4" "Andorra" "Europe" 72.2 NA
+"5" "Angola" "Africa" 33.4 571
+"6" "Antigua and Barbuda" "South America" 61.9 NA
+"7" "Argentina" "South America" 65.3 1495
+"8" "Armenia" "Europe" 61 1095
+"9" "Australia" "Australia" 72.6 1907
+"10" "Austria" "Europe" 71.4 2073
+"11" "Azerbaijan" "Europe" 57.2 1150
+"12" "Bahamas, The" "North America" 63.3 613
+"13" "Bahrain" "Asia" 64.3 2179
+"14" "Bangladesh" "Asia" 54.3 245
+"15" "Barbados" "North America" 65.6 542
+"16" "Belarus" "Europe" 60.7 2571
+"17" "Belgium" "Europe" 71.1 2428
+"18" "Belize" "South America" 60.3 1092
+"19" "Benin" "Africa" 44 NA
+"20" "Bhutan" "Africa" 52.9 NA
+"21" "Bolivia" "South America" 54.4 274
+"22" "Bosnia and Herzegovina" "Europe" 64.3 NA
+"23" "Botswana" "Africa" 35.7 NA
+"24" "Brazil" "South America" 59.8 858
+"25" "Bulgaria" "Europe" 64.6 2574
+"26" "Burkina Faso" "Africa" 35.6 NA
+"27" "Burma" "Asia" 51.7 NA
+"28" "Burundi" "Africa" 35.1 86
+"29" "Cambodia" "Asia" 47.5 NA
+"30" "Cameroon" "Africa" 41.5 652
+"31" "Canada" "North America" 72 1976
+"32" "Cape Verde" "Africa" 60.8 NA
+"33" "Central African Republic" "Africa" 37.4 NA
+"34" "Chad" "Africa" 40.7 160
+"35" "Chile" "South America" 67.3 1202
+"36" "China" "Asia" 64.1 1791
+"37" "Colombia" "South America" 62 521
+"38" "Comoros" "Africa" 54.6 NA
+"39" "Congo, Democratic Republic of the" "Africa" 37.1 476
+"40" "Cook Islands" "Australia" 61.6 NA
+"41" "Costa Rica" "South America" 67.2 NA
+"42" "Cote d'Ivoire" "Africa" 39.5 NA
+"43" "Croatia" "Europe" 66.6 1995
+"44" "Cuba" "North America" 68.3 1343
+"45" "Cyprus" "Europe" 67.6 NA
+"46" "Czech Republic" "Europe" 68.4 NA
+"47" "Denmark" "Europe" 69.8 1919
+"48" "Djibouti" "Africa" 42.9 NA
+"49" "Dominica" "North America" 63.7 NA
+"50" "Dominican Republic" "North America" 59.6 NA
+"51" "Ecuador" "South America" 61.9 232
+"52" "Egypt" "Asia" 59 1275
+"53" "El Salvador" "South America" 59.7 NA
+"54" "Equatorial Guinea" "Africa" 45.5 NA
+"55" "Eritrea" "Africa" 50 NA
+"56" "Estonia" "Europe" 64.1 1983
+"57" "Fiji" "Australia" 58.8 976
+"58" "Finland" "Europe" 71.1 1351
+"59" "France" "Europe" 72 2058
+"60" "Gabon" "Africa" 51.4 487
+"61" "Gambia, The" "Africa" 49.5 171
+"62" "Georgia" "Europe" 64.4 NA
+"63" "Germany" "Europe" 71.8 1702
+"64" "Ghana" "Africa" 49.8 161
+"65" "Greece" "Europe" 71 4313
+"66" "Grenada" "South America" 59.2 NA
+"67" "Guatemala" "South America" 57.4 609
+"68" "Guinea" "Africa" 44.8 NA
+"69" "Guinea-Bissau" "Africa" 40.5 90
+"70" "Guyana" "South America" 55.2 590
+"71" "Haiti" "North America" 43.8 NA
+"72" "Honduras" "South America" 58.4 595
+"73" "Hungary" "Europe" 64.9 3265
+"74" "Iceland" "Europe" 72.8 1915
+"75" "India" "Asia" 53.5 129
+"76" "Indonesia" "Asia" 58.1 1742
+"77" "Iran" "Asia" 57.6 NA
+"78" "Iraq" "Asia" 50.1 1430
+"79" "Ireland" "Europe" 69.8 2236
+"80" "Israel" "Asia" 71.4 2162
+"81" "Italy" "Europe" 72.7 1901
+"82" "Jamaica" "North America" 65.1 735
+"83" "Japan" "Asia" 75 3023
+"84" "Jordan" "Asia" 61 1832
+"85" "Kazakhstan" "Asia" 55.9 2160
+"86" "Kenya" "Africa" 44.4 200
+"87" "Kiribati" "Asia" 54 NA
+"88" "Korea, North" "Asia" 58.8 NA
+"89" "Korea, South" "Asia" 67.8 NA
+"90" "Kuwait" "Asia" 67 3062
+"91" "Kyrgyzstan" "Asia" 55.3 1886
+"92" "Laos" "Asia" 47 NA
+"93" "Latvia" "Europe" 62.8 NA
+"94" "Lebanon" "Asia" 60.4 NA
+"95" "Lesotho" "Africa" 31.4 NA
+"96" "Liberia" "Africa" 35.3 89
+"97" "Libya" "Africa" 63.7 NA
+"98" "Lithuania" "Europe" 63.3 NA
+"99" "Luxembourg" "Europe" 71.5 NA
+"100" "Macedonia, Republic of" "Europe" 63.4 NA
+"101" "Madagascar" "Africa" 48.6 315
+"102" "Malawi" "Africa" 34.9 123
+"103" "Malaysia" "Asia" 63.2 910
+"104" "Maldives" "Asia" 57.8 1441
+"105" "Mali" "Africa" 37.9 223
+"106" "Malta" "Europe" 71 2668
+"107" "Marshall Islands" "Australia" 54.8 NA
+"108" "Mauritania" "Africa" 44.5 317
+"109" "Mauritius" "Africa" 62.4 1284
+"110" "Mexico" "North America" 65.5 754
+"111" "Micronesia, Federated States of" "Australia" 57.7 NA
+"112" "Moldova" "Europe" 59.8 NA
+"113" "Monaco" "Europe" 72.9 NA
+"114" "Mongolia" "Asia" 55.6 NA
+"115" "Morocco" "Africa" 60.2 800
+"116" "Mozambique" "Africa" 36.9 432
+"117" "Namibia" "Africa" 43.3 NA
+"118" "Nauru" "Australia" 55.1 NA
+"119" "Nepal" "Asia" 51.8 619
+"120" "Netherlands" "Europe" 71.2 2323
+"121" "New Zealand" "Australia" 70.8 NA
+"122" "Nicaragua" "South America" 61.4 793
+"123" "Niger" "Africa" 35.5 NA
+"124" "Nigeria" "Africa" 41.5 189
+"125" "Niue" "Australia" 60.4 NA
+"126" "Norway" "Europe" 72 725
+"127" "Oman" "Asia" 64 NA
+"128" "Pakistan" "Asia" 53.3 564
+"129" "Palau" "Australia" 59.6 NA
+"130" "Panama" "North America" 66.2 244
+"131" "Papua New Guinea" "Africa" 51.9 NA
+"132" "Paraguay" "South America" 61.9 1748
+"133" "Peru" "South America" 61 195
+"134" "Philippines" "Asia" 59.3 1849
+"135" "Poland" "Europe" 65.8 2061
+"136" "Portugal" "Europe" 69.2 2079
+"137" "Qatar" "Asia" 65.2 NA
+"138" "Romania" "Europe" 63.1 1676
+"139" "Russia" "Europe" 58.6 NA
+"140" "Rwanda" "Africa" 38.3 135
+"141" "Saint Kitts and Nevis" "North America" 61.5 NA
+"142" "Saint Lucia" "North America" 62.7 NA
+"143" "Saint Vincent and the Grenadines" "North America" 61 NA
+"144" "Samoa" "Australia" 59.7 1509
+"145" "San Marino" "Europe" 73.4 NA
+"146" "Sao Tom and Prncipe" "Africa" 54.4 NA
+"147" "Saudi Arabia" "Asia" 61.4 NA
+"148" "Senegal" "Africa" 48 340
+"149" "Serbia and Montenegro" "Europe" 63.8 NA
+"150" "Seychelles" "Africa" 61.2 NA
+"151" "Sierra Leone" "Africa" 28.6 NA
+"152" "Singapore" "Asia" 70.1 1230
+"153" "Slovakia" "Europe" 66.2 2282
+"154" "Slovenia" "Europe" 69.5 NA
+"155" "Solomon Islands" "Asia" 56.2 NA
+"156" "Somalia" "Africa" 36.8 NA
+"157" "South Africa" "Africa" 44.3 NA
+"158" "Spain" "Europe" 72.6 2779
+"159" "Sri Lanka" "Asia" 61.6 NA
+"160" "Sudan" "Africa" 48.5 77
+"161" "Suriname" "South America" 58.8 1930
+"162" "Swaziland" "Africa" 34.2 NA
+"163" "Sweden" "Europe" 73.3 1202
+"164" "Switzerland" "Europe" 73.2 NA
+"165" "Syria" "Asia" 61.7 NA
+"166" "Tajikistan" "Asia" 54.7 NA
+"167" "Tanzania" "Africa" 40.4 NA
+"168" "Thailand" "Asia" 60.1 1067
+"169" "Togo" "Africa" 44.6 306
+"170" "Tonga" "Australia" 61.8 NA
+"171" "Trinidad and Tobago" "North America" 62 NA
+"172" "Tunisia" "Africa" 62.5 1341
+"173" "Turkey" "Asia" 62 2394
+"174" "Turkmenistan" "Asia" 54.4 2307
+"175" "Tuvalu" "Australia" 53 NA
+"176" "Uganda" "Africa" 42.7 180
+"177" "Ukraine" "Europe" 59.2 1456
+"178" "United Arab Emirates" "Asia" 63.9 NA
+"179" "United Kingdom" "Europe" 70.6 NA
+"180" "United States" "North America" 69.3 NA
+"181" "Uruguay" "South America" 66.2 1396
+"182" "Uzbekistan" "Asia" 59.4 1104
+"183" "Vanuatu" "Australia" 58.9 NA
+"184" "Vietnam" "Asia" 61.3 NA
+"185" "Yemen" "Asia" 49.3 NA
+"186" "Zambia" "Africa" 34.9 408
+"187" "Ethiopia" "Africa" NA 87
+"188" "Venezuela" "South America" NA 1079
+"189" "Zimbabwe" "Africa" NA 399
