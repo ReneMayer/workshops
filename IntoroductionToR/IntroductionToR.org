@@ -1,0 +1,901 @@
+* Intro
+** Introduction
+** What is R?
+** Interaction with R
+** The first contact
+** The R Interpreter
+    5 - 1 + 10
+    ## [1] 14
+    7 * 10 / 2
+    ## [1] 35
+    exp(-2.19)
+    ## [1] 0.1119167
+    pi
+    ## [1] 3.141593
+    sin(2 * pi/3)
+    ## [1] 0.8660254
+** Which skills are to be developed?
+** The art of R programming
+** The epic search: which Editor?
+** R-Studio
+* The R-Environment
+** Packages & Workspace
+** Packages
+    search() # Which commands and packages loaded and the current environment?
+    ##  [1] ".GlobalEnv"        "package:igraph"    "package:methods"
+    ##  [4] "package:Cairo"     "package:knitr"     "package:stats"
+    ##  [7] "package:graphics"  "package:grDevices" "package:utils"
+    ## [10] "package:datasets"  "Autoloads"         "package:base"
+    library(MASS)
+    install.packages('MASS', dep=TRUE) # Opening a menu listing up servers.
+    install.packages('lavaan', repos='http://www.da.ugent.be') # set the server
+    install.packages('name.tar.gz', repos=NULL) # Installing an externally
+    downloaded package
+    library(devtools)
+    install_github('ReneMayer','questionnaire') # directly from github
+    install_version("ggplot2", version = "0.9.1", repos = "http://cran.us.r-project.org")
+** Workspace
+    getwd()  # Shows the current working directory
+    ## [1] "/Users/renemayer/Documents/DerEinstiegInR_markdownVersion"
+    # setwd() # sets or changes the current working directory
+    save(objectname, file="ExampleName.RData")  # Stores the object on
+    your hdd
+    save.image()  # saves all data-objects and all options
+    ls()        # listing up all objects
+    q(save = "no")  # Quits R without saving the workspace.
+** The help system.
+** ? did not help
+* Concepts
+** Object orientation
+** R-Objects
+[[objects_2.png]]
+** Daten-Objekte explorieren
+    a <-  4
+    b <- '4'
+    c <- 'vier'
+    d <- TRUE
+    mode(a)
+    ## [1] "numeric"
+    mode(b)
+    ## [1] "character"
+    mode(c)
+    ## [1] "character"
+    mode(d)
+    ## [1] "logical"
+** Exercise 1
+** explore efficiently with str()
+    str(dfm)
+    ## 'data.frame':    6 obs. of  5 variables:
+    ##  $ Continent  : Factor w/ 6 levels "Africa","Asia",..: 1 2 3 4 5 6
+    ##  $ LE         : num  44.7 59 63.7 68 66.9 60.8
+    ##  $ HealthExpPC: num  44 340 1127 1984 1533 ...
+    ##  $ LogHE      : num  3.2 4.6 5.9 6.9 6.6 5
+    ##  $ CigCon     : num  394 1521 1464 2066 1018 ...
+** Homogeneous data-objects
+** Inhomogeneous data-objects
+** Exercise 2
+** Generic functions
+    methods('plot') # method.class
+    ##  [1] plot.acf*            plot.cohesiveBlocks* plot.communities*
+    ##  [4] plot.data.frame*     plot.decomposed.ts*  plot.default
+    ##  [7] plot.dendrogram*     plot.density*        plot.ecdf
+    ## [10] plot.factor*         plot.formula*        plot.function
+    ## [13] plot.hclust*         plot.histogram*      plot.HoltWinters*
+    ## [16] plot.igraph          plot.isoreg*         plot.lm*
+    ## [19] plot.medpolish*      plot.mlm*            plot.ppr*
+    ## [22] plot.prcomp*         plot.princomp*       plot.profile.nls*
+    ## [25] plot.sir*            plot.spec*           plot.stepfun
+    ## [28] plot.stl*            plot.table*          plot.ts
+    ## [31] plot.tskernel*       plot.TukeyHSD*
+    ##
+    ##    Non-visible functions are asterisked
+* Objects
+** WHO-Data
+** Vector
+** create objects
+    # Naming conventions
+    le.1 <- 44.7   # 'le 1' special character are not allowed...
+    le.2 <- 59     #  ... like the space $ (
+    le.3 <- 63.7   #  R is casesensitive LE.3 is NOT le.3
+    le.4 <- 68.0
+    le.5 <- 66.9
+    le.6 <- 60.8
+    le.6
+    ## [1] 60.8
+    # Important: The result was only printed In the console but not saved.
+    (le.1 + le.2 + le.3 + le.4 + le.5 + le.6) / 6
+    ## [1] 60.51667
+    # This does actually store the result in an object 'sqrt.le.1'.
+    sqrt.le.1 <- sqrt(le.1)
+    summe.le <- le.1 + le.2 + le.3 + le.4 + le.5 + le.6
+    Av <- (le.1 + le.2 + le.3 + le.4 + le.5 + le.6) / 6
+    Av
+    ## [1] 60.51667
+    # ... saving & seeing the result by wrapping brackets around.
+    ( Av <- (le.1 + le.2 + le.3 + le.4 + le.5 + le.6) / 6 )
+    ## [1] 60.51667
+** Vector
+    # create a vector with c() 'combine'
+    L <- c(44.7, 59.0, 63.7, 68.0, 66.9, 60.8)
+call a single vectorelement by using an index (subscript) i
+${\vec{L_{1}}}$
+    L[1]
+    ## [1] 44.7
+    L[1:5]
+    ## [1] 44.7 59.0 63.7 68.0 66.9
+    L[-1]
+    ## [1] 59.0 63.7 68.0 66.9 60.8
+    L[-c(1:4)]
+    ## [1] 66.9 60.8
+** Exercise 3
+** vector - apply functions
+    min(L)
+    ## [1] 44.7
+    range(L)
+    ## [1] 44.7 68.0
+    sum(L)
+    ## [1] 363.1
+    sd(L)
+    ## [1] 8.478542
+    length(L)  # se=?
+    ## [1] 6
+    he <- c(44.0, 340.0, 1126.6, 1983.9, 1532.8, 174.8)
+    log.he <- c(3.2, 4.6, 5.9, 6.9, 6.6, NA)
+    mean(he)
+    ## [1] 867.0167
+    mean(log.he)
+    ## [1] NA
+    mean(log.he, na.rm=TRUE)
+    ## [1] 5.44
+** The anatomy of functions
+    # Long-winded and not the R-way
+    Id <- c(1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4)
+    Id
+    ##  [1] 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4 4
+    # Let's make use of the rep() function instead.
+    ( Id <- rep(x = 1:4,  each = 8) )
+    ##  [1] 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4 4
+    # We can switch the order the arguments if we specify argument names.
+    (       rep(each = 8, x = 1:4 ) )
+    ##  [1] 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4 4
+    # Abbreviated form without argument names!
+    # Exception: save(file=) the 'file=' argument-name Cannot be skipped.
+    # Watch out for the right order of arguments if you're used to abbreviated form.
+    rep(1:4, 8)
+    ##  [1] 1 2 3 4 1 2 3 4 1 2 3 4 1 2 3 4 1 2 3 4 1 2 3 4 1 2 3 4 1 2 3 4
+    # The second argument is 'times' and not 'each'
+    # ?rep
+    # ... rep(x, times = 1, length.out = NA, each = 1)
+    # As rep() is generic you can have all types of data, e.g., Strings.
+    cont.seq <- rep(c("Africa","Asia","Australia","Europe"), each = 8)
+    head(cont.seq)
+    ## [1] "Africa" "Africa" "Africa" "Africa" "Africa" "Africa"
+** Exercise 4
+** Matrix
+** matrix
+    cig=c(393.9, 1520.8, 1464.0, 2065.9, 1018.5, 902.0)
+    Z <- cbind(L, cig, he, log.he) # cbind() column-bind
+    head(Z,2) # to shorten the handout
+    ##         L    cig  he log.he
+    ## [1,] 44.7  393.9  44    3.2
+    ## [2,] 59.0 1520.8 340    4.6
+    # Matrix[row, col]
+    # ... all rows and the first column
+    Z[,1]
+    ## [1] 44.7 59.0 63.7 68.0 66.9 60.8
+    # ... all columns in the first row
+    Z[1,]
+    ##      L    cig     he log.he
+    ##   44.7  393.9   44.0    3.2
+    # ... the first five rows and the first column
+    Z[1 : 5, 1]
+    ## [1] 44.7 59.0 63.7 68.0 66.9
+** Matrix cont'd
+    Z <- rbind(L, cig, he, log.he) # rowwise combination some vectors.
+    Z
+    ##         [,1]   [,2]   [,3]   [,4]   [,5]  [,6]
+    ## L       44.7   59.0   63.7   68.0   66.9  60.8
+    ## cig    393.9 1520.8 1464.0 2065.9 1018.5 902.0
+    ## he      44.0  340.0 1126.6 1983.9 1532.8 174.8
+    ## log.he   3.2    4.6    5.9    6.9    6.6    NA
+    (M <- matrix(nrow = 3, ncol = 4))
+    ##      [,1] [,2] [,3] [,4]
+    ## [1,]   NA   NA   NA   NA
+    ## [2,]   NA   NA   NA   NA
+    ## [3,]   NA   NA   NA   NA
+    (data.vector=c(L, cig, he, log.he))                # Note: column-names get lost.
+    ##  [1]   44.7   59.0   63.7   68.0   66.9   60.8  393.9 1520.8 1464.0 2065.9
+    ## [11] 1018.5  902.0   44.0  340.0 1126.6 1983.9 1532.8  174.8    3.2    4.6
+    ## [21]    5.9    6.9    6.6     NA
+    (M=matrix(data=data.vector, nrow = 6, byrow = TRUE)) # ncol is redundant
+    ##        [,1]   [,2]   [,3]   [,4]
+    ## [1,]   44.7   59.0   63.7   68.0
+    ## [2,]   66.9   60.8  393.9 1520.8
+    ## [3,] 1464.0 2065.9 1018.5  902.0
+    ## [4,]   44.0  340.0 1126.6 1983.9
+    ## [5,] 1532.8  174.8    3.2    4.6
+    ## [6,]    5.9    6.9    6.6     NA
+** Matrix-math
+    ( X=matrix(1:4, ncol=2) )
+    ##      [,1] [,2]
+    ## [1,]    1    3
+    ## [2,]    2    4
+    t(X)
+    ##      [,1] [,2]
+    ## [1,]    1    2
+    ## [2,]    3    4
+${X^{-1}}$ invert
+    solve(X)   # solve(x) gives the inverse; solve(A,b) solves Ax=b
+    ##      [,1] [,2]
+    ## [1,]   -2  1.5
+    ## [2,]    1 -0.5
+    X %*% c(1:2)
+    ##      [,1]
+    ## [1,]    7
+    ## [2,]   10
+    # model.matrix(~., data) %*% coef(lm(y~., data))
+    # predict(lm(y~., data))
+** Exercise 5
+** The attributes of the matrix object
+    dim(M) # attribute dimensionality
+    ## [1] 6 4
+    colnames(M) <- c('le', 'cig', 'he', 'log.he') # Column-names
+    colnames(M) # mit Z[1,] Shows the variable names.
+    ## [1] "le"     "cig"    "he"     "log.he"
+    M[,'le']
+    ## [1]   44.7   66.9 1464.0   44.0 1532.8    5.9
+    M[,c('cig','he')]
+    ##         cig     he
+    ## [1,]   59.0   63.7
+    ## [2,]   60.8  393.9
+    ## [3,] 2065.9 1018.5
+    ## [4,]  340.0 1126.6
+    ## [5,]  174.8    3.2
+    ## [6,]    6.9    6.6
+** The frame data
+** data.frame
+    dl <- data.frame(   le = L,
+                       cig = cig,
+                        he = he,
+                     lg.he = log.he)
+    head(dl,3)
+    ##     le    cig     he lg.he
+    ## 1 44.7  393.9   44.0   3.2
+    ## 2 59.0 1520.8  340.0   4.6
+    ## 3 63.7 1464.0 1126.6   5.9
+    # the $elect operator
+    dl$le
+    ## [1] 44.7 59.0 63.7 68.0 66.9 60.8
+** Variables - Create, Change, Recode
+    Smoking <- read.table(file="Smoking.txt", header =TRUE)
+    db <- within(Smoking, {
+              zLE = scale(LE)
+            logHE = log(HealthExpPC)
+           health = HealthExpPC
+      HealthExpPC = NULL
+              fLE = cut(LE, 3, labels=c('young','mature','old'))
+              fHE = cut(logHE, 3, labels=c('A','B','C'))
+          fCigCon = cut(CigCon, 3, labels=c('low','medium','strong'))
+    }) # beachte ( ... {...})
+    head(db,3)
+    ##                 Country Continent   LE CigCon        LE.q Cont  Cont2 Year
+    ## Afghanistan Afghanistan      Asia 35.5     98 (28.6,40.2] Asia   Asia 2004
+    ## Albania         Albania    Europe 61.4     NA (51.8,63.4] Eurp Europe 2004
+    ## Algeria         Algeria    Africa 60.6   1021 (51.8,63.4] Afrc Africa 2004
+    ##                     HE    LogHE        HE5 fCigCon fHE   fLE health
+    ## Afghanistan [0.3,31.1] 2.602690 [0.3,24.2]     low   B young   13.5
+    ## Albania      (152,476] 5.056883 (81.2,212]    <NA>   B   old  157.1
+    ## Algeria     (31.1,152] 4.542230 (81.2,212]     low   B   old   93.9
+    ##                logHE        zLE
+    ## Afghanistan 2.602690 -2.0113058
+    ## Albania     5.056883  0.3411997
+    ## Algeria     4.542230  0.2685355
+** the factor: nominal & ordinal
+    class(db$fHE)
+    ## [1] "factor"
+    head(db$fHE)
+    ## [1] B B B C B C
+    ## Levels: A B C
+    data.frame(label=levels(db$fHE), level=as.numeric(factor(c('A','B','C'))), B = c(1,0,0), C = c(0,1,0)  )
+    ##   label level B C
+    ## 1     A     1 1 0
+    ## 2     B     2 0 1
+    ## 3     C     3 0 0
+    args(factor)
+    ## function (x = character(), levels, labels = levels, exclude = NA,
+    ##     ordered = is.ordered(x), nmax = NA)
+    ## NULL
+    head( as.numeric(db$fHE)   )
+    ## [1] 2 2 2 3 2 3
+    head( as.character(db$fHE) )
+    ## [1] "B" "B" "B" "C" "B" "C"
+    args(data.frame)
+    ## function (..., row.names = NULL, check.rows = FALSE, check.names = TRUE,
+    ##     stringsAsFactors = default.stringsAsFactors())
+    ## NULL
+** Exercise 6
+** List's
+** list()
+    x1 <- 1:3
+    x2 <- c('a', 'b', 'c', 'd')
+    x3 <- 3
+    x4 <- matrix(data=1:4, nrow = 2)
+    ( Yl <- list(x1 = x1, x2 = x2, x3 = x3, x4 = x4) )
+    ## $x1
+    ## [1] 1 2 3
+    ##
+    ## $x2
+    ## [1] "a" "b" "c" "d"
+    ##
+    ## $x3
+    ## [1] 3
+    ##
+    ## $x4
+    ##      [,1] [,2]
+    ## [1,]    1    3
+    ## [2,]    2    4
+    # double brackets notation: reference by name
+    Yl[['x1']]
+    ## [1] 1 2 3
+    # double brackets notation: reference by index
+    Yl[[1]]
+    ## [1] 1 2 3
+    # select Operator notatin: reference by name
+    Yl$x1
+    ## [1] 1 2 3
+** List's as output
+    fit <- lm(le ~ cig, data = dl)
+    names(fit)
+    ##  [1] "coefficients"  "residuals"     "effects"       "rank"
+    ##  [5] "fitted.values" "assign"        "qr"            "df.residual"
+    ##  [9] "xlevels"       "call"          "terms"         "model"
+    fit$coefficients
+    ## (Intercept)         cig
+    ## 47.19042619  0.01085626
+    fit$coefficients[1]
+    ## (Intercept)
+    ##    47.19043
+    # There are extraction functions for most modeling object list entries.
+    coef(fit)
+    ## (Intercept)         cig
+    ## 47.19042619  0.01085626
+** Exercise 7
+* Data I/O
+** Getting data in
+    args(read.table)
+    ## function (file, header = FALSE, sep = "", quote = "\"'", dec = ".",
+    ##     numerals = c("allow.loss", "warn.loss", "no.loss"), row.names,
+    ##     col.names, as.is = !stringsAsFactors, na.strings = "NA",
+    ##     colClasses = NA, nrows = -1, skip = 0, check.names = TRUE,
+    ##     fill = !blank.lines.skip, strip.white = FALSE, blank.lines.skip = TRUE,
+    ##     comment.char = "#", allowEscapes = FALSE, flush = FALSE,
+    ##     stringsAsFactors = default.stringsAsFactors(), fileEncoding = "",
+    ##     encoding = "unknown", text, skipNul = FALSE)
+    ## NULL
+** Arguments of read.table()
+    ##              lNames                      string
+    ## 1              file
+    ## 2            header                       FALSE
+    ## 3               sep
+    ## 4             quote                          "'
+    ## 5               dec                           .
+    ## 6          numerals callow.losswarn.lossno.loss
+    ## 7         row.names
+    ## 8         col.names
+    ## 9             as.is           !stringsAsFactors
+    ## 10       na.strings                          NA
+    ## 11       colClasses
+    ## 12            nrows                          -1
+    ## 13             skip                           0
+    ## 14      check.names                        TRUE
+    ## 15             fill           !blank.lines.skip
+    ## 16      strip.white                       FALSE
+    ## 17 blank.lines.skip                        TRUE
+    ## 18     comment.char                           #
+    ## 19     allowEscapes                       FALSE
+    ## 20            flush                       FALSE
+    ## 21 stringsAsFactors    default.stringsAsFactors
+    ## 22     fileEncoding
+    ## 23         encoding                     unknown
+    ## 24             text
+    ## 25          skipNul                       FALSE
+** Getting data out
+* Data-Manipulation
+** Merge, Change and Filter
+** Merge data frames
+    cl <- read.table('CigLE.txt')
+    head(cl,3)
+    ##       Country Continent   LE CigCon
+    ## 1 Afghanistan      Asia 35.5     98
+    ## 2     Albania    Europe 61.4     NA
+    ## 3     Algeria    Africa 60.6   1021
+    ch <- read.table('HealthExpPerCap.txt')
+    head(ch,3)
+    ##       Country HealthExpPC Year
+    ## 1 Afghanistan        13.5 2004
+    ## 2     Albania       157.1 2004
+    ## 3     Algeria        93.9 2004
+    db = merge( cl, ch, by = 'Country', all = T)
+    info=data.frame(CigLE=dim(cl),HealthExp=dim(ch), Both=dim(db)); rownames(info)=c('cases','variables'); info
+    ##           CigLE HealthExp Both
+    ## cases       189       188  198
+    ## variables     4         3    6
+    library(dplyr)
+    db = full_join(  cl, ch, by = 'Country' ) # sql-notation left or right join ...
+    head(db)
+    ##               Country     Continent   LE CigCon HealthExpPC Year
+    ## 1         Afghanistan          Asia 35.5     98        13.5 2004
+    ## 2             Albania        Europe 61.4     NA       157.1 2004
+    ## 3             Algeria        Africa 60.6   1021        93.9 2004
+    ## 4             Andorra        Europe 72.2     NA      2453.1 2004
+    ## 5              Angola        Africa 33.4    571        25.5 2004
+    ## 6 Antigua and Barbuda South America 61.9     NA       485.3 2004
+** Factor out
+         ftable( table(db$Cont, db$cLE, db$cCigCon),
+                    row.vars=1
+                )
+    with( db,
+         ftable( table(Cont, fLE, fCigCon),
+                row.vars = 'Cont'
+         )
+    )
+    ##      fLE     young               mature               old
+    ##      fCigCon   low medium strong    low medium strong low medium strong
+    ## Cont
+    ## Afrc            14      0      0      9      0      0   4      0      0
+    ## Asia             1      0      0      8      5      0   3      5      2
+    ## Astr             0      0      0      1      0      0   0      2      0
+    ## Eurp             0      0      0      2      0      0   4     19      2
+    ## NrtA             0      0      0      0      0      0   6      2      0
+    ## SthA             0      0      0      4      1      0   8      2      0
+** Filter
+    head(db$fHE, 20)
+    ##  [1] B B B C B C C B C C B C C B C B C B B B
+    ## Levels: A B C
+    head(db$fHE == 'B', 20)
+    ##  [1]  TRUE  TRUE  TRUE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE
+    ## [12] FALSE FALSE  TRUE FALSE  TRUE FALSE  TRUE  TRUE  TRUE
+    B <- db[ db$fHE == 'B', ]
+    library(dplyr); db$zLE = NULL
+    # f(x, y)   wird zu   x %>% f(y)
+    db %>% filter(fHE == 'A' & fCigCon == 'low') %>% select(Country)
+    ##                             Country
+    ## 1                           Burundi
+    ## 2 Congo, Democratic Republic of the
+    ## 3                          Ethiopia
+    ## 4                        Madagascar
+    # ... R-base: db[db$fHE == 'A' & db$fCigCon == 'low', 'Country']
+** Restructure & Aggregation
+** Restructure
+** data-formats: wide & long
+    library(tidyr)
+    m<-data.frame(c('hans','peter'), matrix(1:4, ncol=2, byrow=F))
+    names(m)=c('id','first','second')
+    m
+    ##      id first second
+    ## 1  hans     1      3
+    ## 2 peter     2      4
+    gather(m, key = time, value = measure, -id )
+    ##      id   time measure
+    ## 1  hans  first       1
+    ## 2 peter  first       2
+    ## 3  hans second       3
+    ## 4 peter second       4
+** long
+    m<-data.frame( rep(c('h','p'),2), rep(c('A','B'),each=2), matrix(1:8, ncol=2, byrow=F) )
+    names(m)=c('id','F','f','s')
+    m
+    ##   id F f s
+    ## 1  h A 1 5
+    ## 2  p A 2 6
+    ## 3  h B 3 7
+    ## 4  p B 4 8
+    gather(m, key=time, value = measure, -id:-F) # gather(m, key=time, value = measure, f:s)
+    ##   id F time measure
+    ## 1  h A    f       1
+    ## 2  p A    f       2
+    ## 3  h B    f       3
+    ## 4  p B    f       4
+    ## 5  h A    s       5
+    ## 6  p A    s       6
+    ## 7  h B    s       7
+    ## 8  p B    s       8
+** Pivoting & Aggregate
+** spread - wide format
+    m %>%
+      gather(time, measure, -id:-F) %>%
+      unite(temp, F, time) %>%
+      spread(temp, measure)
+    ##   id A_f A_s B_f B_s
+    ## 1  h   1   5   3   7
+    ## 2  p   2   6   4   8
+** Aggregate: group\_by() & summarise()
+    m %>%
+        gather(time, measure, -id:-F) %>%
+        group_by(time, F) %>%
+        summarise(mean = mean(measure), n = n(), median = max(measure))
+    ## Source: local data frame [4 x 5]
+    ## Groups: time [?]
+    ##
+    ##     time      F  mean     n median
+    ##   (fctr) (fctr) (dbl) (int)  (int)
+    ## 1      f      A   1.5     2      2
+    ## 2      f      B   3.5     2      4
+    ## 3      s      A   5.5     2      6
+    ## 4      s      B   7.5     2      8
+** Exercise 8
+* Functions
+** Writing functions
+** The 3 magical dots
+    my.funktion <- function(Arguments, ... ) {
+        command
+        return
+    }
+    my.matrix <- function(x, ...) { matrix(x, ...) }
+    my.matrix(1:4)
+    ##      [,1]
+    ## [1,]    1
+    ## [2,]    2
+    ## [3,]    3
+    ## [4,]    4
+    my.matrix(1:4, ncol = 2, byrow = T)
+    ##      [,1] [,2]
+    ## [1,]    1    2
+    ## [2,]    3    4
+** set defaults
+    my.funktion <- function(Argument1 = 'foo', Argument2='bar', ...) {
+        command
+        return
+    }
+    my.matrix <- function(x, ...) { matrix(x, ...) }
+    my.matrix(1:4)
+    ##      [,1]
+    ## [1,]    1
+    ## [2,]    2
+    ## [3,]    3
+    ## [4,]    4
+    my.matrix(1:4, ncol = 2, byrow = T)
+    ##      [,1] [,2]
+    ## [1,]    1    2
+    ## [2,]    3    4
+** set defaults cont'd
+    my.matrix <- function(x = 1:4, ncol = 2, byrow = T, ...) {
+        matrix(x, ncol = ncol, byrow = byrow, ...)
+    }
+    my.matrix( )
+    ##      [,1] [,2]
+    ## [1,]    1    2
+    ## [2,]    3    4
+    my.matrix(1:6, ncol = 3, byrow = F)
+    ##      [,1] [,2] [,3]
+    ## [1,]    1    3    5
+    ## [2,]    2    4    6
+** Exercise 9
+* Vectorization
+** Meet the apply family
+** sapply in action
+    source('Concepts.R')
+      sapply(X = ls(), FUN=function(x) class( get(x) ) )
+    ##          dfm           lm           mn          tab           vc
+    ## "data.frame"       "list"     "matrix"      "table"  "character"
+    ##           vl           vn
+    ##    "logical"    "numeric"
+    dice <- function(Seiten, N, Augenzahl) {
+      x = sample(1:Seiten, N, replace = T)
+      sum(x == Augenzahl)
+    }
+    (v=seq(from=100,to=1000, by=100))
+    ##  [1]  100  200  300  400  500  600  700  800  900 1000
+    sapply(X=v, FUN=function(i) dice(Seiten = 10, N = i, Augenzahl = 8) )
+    ##  [1] 12 24 21 43 61 63 66 76 83 99
+** Argument passing and anonymous functions
+    args(sapply)
+    ## function (X, FUN, ..., simplify = TRUE, USE.NAMES = TRUE)
+    ## NULL
+    # Passing the argument-value 'v' ... implicitly to 'N'.
+    sapply(X = v, FUN = dice, Seiten = 10, Augenzahl = 8)
+    ##  [1]  16  24  34  41  49  65  82  73 100  91
+    # Passing the argument-value 'v' explicitly to 'i' and then to 'N' v -> i -> N.
+    sapply(X = v, FUN = function(i) dice(10,N=i,8) )
+    ##  [1]  8 15 30 38 50 51 76 82 97 88
+    # Passing to code inside 'dice' Within the function call of sapply.
+    # ... The function known as 'dice' becomes to an anonymous Function.
+    sapply(X = v, FUN = function(i) {
+                                      x <- sample(1:10, size = i, replace = T)
+                                      sum(x == 8)
+    } )
+    ##  [1]  10  30  28  44  71  50  78  76  91 117
+** Exercise 10
+** mapply in action
+    head( expand.grid(N=v, Seiten=4:10, Augenzahl=1:10) )
+    ##     N Seiten Augenzahl
+    ## 1 100      4         1
+    ## 2 200      4         1
+    ## 3 300      4         1
+    ## 4 400      4         1
+    ## 5 500      4         1
+    ## 6 600      4         1
+    tail( d <- expand.grid(N=v, Seiten=4:10, Augenzahl=1:10) )
+    ##        N Seiten Augenzahl
+    ## 695  500     10        10
+    ## 696  600     10        10
+    ## 697  700     10        10
+    ## 698  800     10        10
+    ## 699  900     10        10
+    ## 700 1000     10        10
+    # Applies multiple function arguments to the dice function.
+    result <- mapply( FUN = dice,
+                   Seiten = d$Seiten,
+                        N = d$N,
+                Augenzahl = d$Augenzahl )
+    head(result)
+    ## [1]  31  47  83  91 131 155
+* Graphics
+** Overview
+** traditional graphics: elements
+* ggplot2
+** geometric icons & aesthetics
+    library(ggplot2)
+    Smoking <-
+        read.table(file="Smoking.txt",
+                         header =TRUE)
+    ggplot(data=Smoking) +
+        aes(y=LE, x=CigCon) +
+        geom_point()
+** Exercise 11
+** Conditional graphics: facetting
+    ggplot(data=na.omit(Smoking)) +
+        aes(y=LE, x=CigCon) +
+        geom_point() +
+        facet_wrap( ~ Continent)
+** Groupings by color
+    ggplot(data=na.omit(Smoking)) +
+        aes(y=LE, x=CigCon) +
+        geom_point(aes(colour=HE)) +
+        facet_wrap( ~ Continent)
+** Exercise 12
+** Conditional predictions
+    ggplot(data=na.omit(Smoking)) +
+            aes(y=LE, x=CigCon) +
+            geom_point(aes(colour=HE)) +
+            geom_smooth(method="lm", se= F,
+                                   size = .5,
+                                   aes(color = HE, group = HE)) +
+            facet_wrap( ~ Continent)
+* Solutions
+** Exercise 1
+    # setwd('~/YourDirectory/subdirectory/')
+    source('Concepts.R')
+    ls()
+    ## [1] "dfm" "lm"  "mn"  "tab" "vc"  "vl"  "vn"
+    class(vl)
+    ## [1] "logical"
+    mode(vl)
+    ## [1] "logical"
+    attributes(vl)
+    ## NULL
+    # ...
+    ##     class        mode        n.attr names
+    ## dfm "data.frame" "list"      "3"    "names|row.names|class"
+    ## lm  "list"       "list"      "1"    "names"
+    ## mn  "matrix"     "numeric"   "1"    "dim"
+    ## tab "table"      "numeric"   "3"    "dim|dimnames|class"
+    ## vc  "character"  "character" "0"    ""
+    ## vl  "logical"    "logical"   "0"    ""
+    ## vn  "numeric"    "numeric"   "1"    "names"
+** Exercise 2
+    plot(tab, las=2) # mosaicplot
+    plot(mn)         # scatterplot of column 1 by 2
+    plot(vn)         # scatterplot value x index
+    plot(vl)         # TRUE: 1, FALSE: 0
+    plot(dfm)
+    # the default
+    # ... plot-behavior
+    # ... is the scatterplot-matrix
+** Exercise 3
+    (v <- 1:6)
+    ## [1] 1 2 3 4 5 6
+    c( v[  -1   ] ,  NA)
+    ## [1]  2  3  4  5  6 NA
+    c(NA, v[-length(v)])
+    ## [1] NA  1  2  3  4  5
+** Exercise 4
+    rep(c("a", "b", "c"), each = 2)
+    ## [1] "a" "a" "b" "b" "c" "c"
+    rep(1:2, times = 3)
+    ## [1] 1 2 1 2 1 2
+    rep(rep(1:3, each = 2), times = 3)
+    ##  [1] 1 1 2 2 3 3 1 1 2 2 3 3 1 1 2 2 3 3
+    rep(paste("A", 1:3, sep = ":"), each = 2)
+    ## [1] "A:1" "A:1" "A:2" "A:2" "A:3" "A:3"
+** Exercise 5
+    # 1.
+    (A <- matrix(1:16, ncol=4, byrow=T) )
+    ##      [,1] [,2] [,3] [,4]
+    ## [1,]    1    2    3    4
+    ## [2,]    5    6    7    8
+    ## [3,]    9   10   11   12
+    ## [4,]   13   14   15   16
+    # 2.
+    A[-1, -1]
+    ##      [,1] [,2] [,3]
+    ## [1,]    6    7    8
+    ## [2,]   10   11   12
+    ## [3,]   14   15   16
+    # 3.
+    X = matrix( data = c( 1, 1, 0.01,
+                          1, 4, 0.30,
+                          1, 4, 1.50), byrow = T, ncol=3)
+    y = c(53.04, 48.2, 53)
+    solve(X) %*% y
+    ##      [,1]
+    ## [1,]   55
+    ## [2,]   -2
+    ## [3,]    4
+** Exercise 6
+    dd <- data.frame(    CigCon = c(394, 1521, 1464, 2066, 1019, 902),
+              Continent = c("Africa", "Asia", "Australia", "Europe", "NorthAmerica", "South America"),
+                  LogHE = c(3, 5, 6, 7, 7, 5),
+                     HE = c(44, 340, 1127, 1984, 1533, 175)
+                     )
+    dd <- within( dd, {
+        cigDay = CigCon/365
+     gmHEmonth = exp(LogHE)/12
+     amHEmonth = HE/12
+    })
+    dd
+    ##   CigCon     Continent LogHE   HE  amHEmonth gmHEmonth   cigDay
+    ## 1    394        Africa     3   44   3.666667  1.673795 1.079452
+    ## 2   1521          Asia     5  340  28.333333 12.367763 4.167123
+    ## 3   1464     Australia     6 1127  93.916667 33.619066 4.010959
+    ## 4   2066        Europe     7 1984 165.333333 91.386097 5.660274
+    ## 5   1019  NorthAmerica     7 1533 127.750000 91.386097 2.791781
+    ## 6    902 South America     5  175  14.583333 12.367763 2.471233
+    # Alternatively ...
+    # ... dd$cigDay = dd$CigCon/365
+    # ...
+** Exercise 7
+    opt <- options()
+    names(opt)
+    ##  [1] "add.smooth"            "bitmapType"
+    ##  [3] "browser"               "browserNLdisabled"
+    ##  [5] "CBoundsCheck"          "check.bounds"
+    ##  [7] "citation.bibtex.max"   "continue"
+    ##  [9] "contrasts"             "defaultPackages"
+    ## [11] "demo.ask"              "deparse.cutoff"
+    ## [13] "device"                "device.ask.default"
+    ## [15] "digits"                "dplyr.print_max"
+    ## [17] "dplyr.print_min"       "dplyr.show_progress"
+    ## [19] "dplyr.strict_sql"      "dvipscmd"
+    ## [21] "echo"                  "editor"
+    ## [23] "encoding"              "example.ask"
+    ## [25] "expressions"           "help.search.types"
+    ## [27] "help.try.all.packages" "HTTPUserAgent"
+    ## [29] "internet.info"         "keep.source"
+    ## [31] "keep.source.pkgs"      "knitr.in.progress"
+    ## [33] "locatorBell"           "mailer"
+    ## [35] "max.print"             "menu.graphics"
+    ## [37] "na.action"             "nwarnings"
+    ## [39] "OutDec"                "pager"
+    ## [41] "papersize"             "pdfviewer"
+    ## [43] "pkgType"               "printcmd"
+    ## [45] "prompt"                "repos"
+    ## [47] "rl_word_breaks"        "scipen"
+    ## [49] "show.coef.Pvalues"     "show.error.messages"
+    ## [51] "show.signif.stars"     "showErrorCalls"
+    ## [53] "str"                   "str.dendrogram.last"
+    ## [55] "stringsAsFactors"      "texi2dvi"
+    ## [57] "tikzMetricsDictionary" "timeout"
+    ## [59] "ts.eps"                "ts.S.compat"
+    ## [61] "unzip"                 "useFancyQuotes"
+    ## [63] "verbose"               "warn"
+    ## [65] "warning.length"        "width"
+    opt$contrasts
+    ##         unordered           ordered
+    ## "contr.treatment"      "contr.poly"
+** Exercise 8
+    library(dplyr)
+    Smoking <- read.table(file="Smoking.txt", header =TRUE)
+    # 1. & 2.
+    Smoking %>% na.omit %>%
+       select(LE, HealthExpPC, Continent, LogHE, CigCon) %>%
+       mutate(CigCon=CigCon/365, HealthExpPC=HealthExpPC/1000) %>%
+       group_by(Continent) %>%
+       summarise_each(funs(mean))
+    ## Source: local data frame [6 x 5]
+    ##
+    ##       Continent       LE HealthExpPC    LogHE   CigCon
+    ##          (fctr)    (dbl)       (dbl)    (dbl)    (dbl)
+    ## 1        Africa 44.65556  0.04402222 3.193846 1.079046
+    ## 2          Asia 58.99583  0.34002542 4.593530 4.166553
+    ## 3     Australia 63.70000  1.12660000 5.910527 4.010959
+    ## 4        Europe 68.00741  1.98393000 6.935007 5.660071
+    ## 5 North America 66.91250  1.53275000 6.617409 2.790411
+    ## 6 South America 60.75333  0.17475333 4.968074 2.471233
+** Exercise 8 cont'd
+    # 3.
+    library(tidyr)
+    Smoking %>% na.omit %>%
+      select(LE, HealthExpPC, Continent, LogHE, CigCon) %>%
+      mutate(fCigCon = cut(CigCon, 3, labels=c('low','medium','strong')),
+                 fHE = cut(LogHE,  3, labels=c('poor','average','rich'))) %>%
+      group_by(fCigCon, fHE) %>%
+      summarise(n = n()) %>%
+      spread(fCigCon, n)
+    ## Source: local data frame [3 x 4]
+    ##
+    ##       fHE   low medium strong
+    ##    (fctr) (int)  (int)  (int)
+    ## 1    poor    27      3     NA
+    ## 2 average    31     14     NA
+    ## 3    rich     6     19      4
+** Exercise 9
+    # 9.1
+    cd <- function(wd) {setwd(wd) }
+    # 9.2
+    lottery <- function(bet) {
+        sample <- sample(1:49, 6, replace=F)
+        hit    <- bet %in% sample
+        list(win = sum( hit ), hit = hit, sample=sample, bet=bet)
+    }
+    lottery( bet = 1:6 )
+    ## $win
+    ## [1] 1
+    ##
+    ## $hit
+    ## [1]  TRUE FALSE FALSE FALSE FALSE FALSE
+    ##
+    ## $sample
+    ## [1] 26  1 32 25 42 20
+    ##
+    ## $bet
+    ## [1] 1 2 3 4 5 6
+** Exercise 9 cont'd
+    # 9.3
+    lottery <- function(bet,  n=49, ...) {
+        sample <- sample(1:n, 6, ... )
+        hit <- bet %in% sample
+        list(win=sum( hit ), sample = sample, bet = bet)
+    }
+    lottery( bet = 1:6 ) # default simulate 6:49
+    ## $win
+    ## [1] 2
+    ##
+    ## $sample
+    ## [1] 45 41  6 27 11  5
+    ##
+    ## $bet
+    ## [1] 1 2 3 4 5 6
+    # lottery( bet = 1:6, n = 46 ) # simulate 6:46
+    # lottery( bet = 1:6, n = 8 , replace = TRUE) #  simulate dice
+** Exercise 10
+    sapply(X = c('tidyr','dplyr', 'ggplot2'), FUN = require, character.only=TRUE)
+    ##   tidyr   dplyr ggplot2
+    ##    TRUE    TRUE    TRUE
+    # as an anonymous function
+    sapply(X = c('tidyr','dplyr', 'ggplot2'), FUN = function(x) { require(x, character.only=TRUE) } )
+    ##   tidyr   dplyr ggplot2
+    ##    TRUE    TRUE    TRUE
+** Exercise 11
+    ggplot(data=na.omit(Smoking)) +
+            aes(y=LE, x=CigCon) +
+            geom_point() +
+            geom_smooth(method="lm", se= F, aes(colour = "lm") ) +
+            geom_smooth(method="loess", se= F, aes(colour = "loess"))
+** Exercise 12
+    r <- read.table('SmokingPopulation.txt')
+    a <- merge(Smoking,r, by='Country')
+    # 1.
+    ggplot(data=a) +
+      aes(y=LE, x=CigCon, size=X2004) +
+          geom_point( alpha=.5 )
+    # 2.
+    ggplot(data=a) +
+      aes(y=LE, x=CigCon, size=X2004) +
+      geom_point( alpha=.5 ) +
+      geom_text(aes( label=Country), size=2)
+    # 3.
+    ggplot(data=a) +
+      aes(y=LE, x=CigCon, color=HE, size=X2004) +
+      geom_point( alpha=.5 ) +
+      geom_text(aes( label=Country), size=2)
