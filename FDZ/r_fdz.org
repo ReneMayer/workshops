@@ -1,0 +1,1015 @@
+* Intro
+** Einführung
+** Was ist R nicht?
+** Was ist R
+** Interaktion mit R
+** Erster Kontakt
+** Der Interpreter
+    5 - 1 + 10
+    ## [1] 14
+    7 * 10 / 2
+    ## [1] 35
+    exp(-2.19)
+    ## [1] 0.1119167
+    pi
+    ## [1] 3.141593
+    sin(2 * pi/3)
+    ## [1] 0.8660254
+** Zu erlernende Fertigkeiten
+** Die epische Suche nach DEM Editor?
+** R-Studio
+* Die R-Umgebung
+** Pakete & Workspace
+** packages
+** Workspace
+** Das Hilfesystem
+** ? hat nicht geholfen
+** Die packages meiner Community
+* Konzepte
+** Objektorientierung
+** R-Objekte
+* Daten-Objekte explorieren
+    a <-  4
+    b <- '4'
+    c <- 'vier'
+    d <- TRUE
+    mode(a)
+    ## [1] "numeric"
+    mode(b)
+    ## [1] "character"
+    mode(c)
+    ## [1] "character"
+    mode(d)
+    ## [1] "logical"
+** Übung 1
+** str() Objekte schnell explorieren
+    str(dfm)
+    ## 'data.frame':    6 obs. of  5 variables:
+    ##  $ Continent  : Factor w/ 6 levels "Africa","Asia",..: 1 2 3 4 5 6
+    ##  $ LE         : num  44.7 59 63.7 68 66.9 60.8
+    ##  $ HealthExpPC: num  44 340 1127 1984 1533 ...
+    ##  $ LogHE      : num  3.2 4.6 5.9 6.9 6.6 5
+    ##  $ CigCon     : num  394 1521 1464 2066 1018 ...
+** homogene Datenobjekte
+** inhomogene Datenobjekte
+** Übung 2
+** Generische Funktionen
+    ##  [1] plot.acf*            plot.cohesiveBlocks* plot.communities*
+    ##  [4] plot.data.frame*     plot.decomposed.ts*  plot.default
+    ##  [7] plot.dendrogram*     plot.density*        plot.ecdf
+    ## [10] plot.factor*         plot.formula*        plot.function
+    ## [13] plot.hclust*         plot.histogram*      plot.HoltWinters*
+    ## [16] plot.igraph          plot.isoreg*         plot.lm*
+    ## [19] plot.medpolish*      plot.mlm*            plot.ppr*
+    ## [22] plot.prcomp*         plot.princomp*       plot.profile.nls*
+    ## [25] plot.sir*            plot.spec*           plot.stepfun
+    ## [28] plot.stl*            plot.table*          plot.ts
+    ## [31] plot.tskernel*       plot.TukeyHSD*
+    ##
+    ##    Non-visible functions are asterisked
+* Objekte
+** WHO Daten
+** Kontinental aggregiert
+** Vektor
+** Objekte erzeugen
+    # Namenskonventionen
+    le.1 <- 44.7   # 'le 1' der Namen darf keine Sonderzeichen ...
+    le.2 <- 59     #  ... wie bspw. das Leerzeichen haben
+    le.3 <- 63.7   #  R ist casesensitive LE.3 ist nicht le.3
+    le.4 <- 68.0
+    le.5 <- 66.9
+    le.6 <- 60.8
+    le.6
+    ## [1] 60.8
+    # es wurde nur Etwas in der Konsole ausgegeben aber nicht abgespeichert!
+    (le.1 + le.2 + le.3 + le.4 + le.5 + le.6) / 6
+    ## [1] 60.51667
+    # erzeugt ein 'atomares' Objekt mit Namen 'sqrt.le.1' im Speicher
+    sqrt.le.1 <- sqrt(le.1)
+    summe.le <- le.1 + le.2 + le.3 + le.4 + le.5 + le.6
+    Av <- (le.1 + le.2 + le.3 + le.4 + le.5 + le.6) / 6
+    Av
+    ## [1] 60.51667
+    # erzeugt das Objekt im Speicher und der Konsole
+    (Av <- (le.1 + le.2 + le.3 + le.4 + le.5 + le.6) / 6)
+    ## [1] 60.51667
+** Vektor
+    # Vektoren bilden mit c() 'combine'
+    L <- c(44.7, 59.0, 63.7, 68.0, 66.9, 60.8)
+    L[1]
+    ## [1] 44.7
+    L[1:5]
+    ## [1] 44.7 59.0 63.7 68.0 66.9
+    L[-1]
+    ## [1] 59.0 63.7 68.0 66.9 60.8
+    L[-c(1:4)]
+    ## [1] 66.9 60.8
+** Übung 3
+** Funktionen anwenden: auf Vektoren
+    min(L)
+    ## [1] 44.7
+    range(L)
+    ## [1] 44.7 68.0
+    sum(L)
+    ## [1] 363.1
+    sd(L)
+    ## [1] 8.478542
+    length(L)  # se=?
+    ## [1] 6
+    he <- c(44.0, 340.0, 1126.6, 1983.9, 1532.8, 174.8)
+    log.he <- c(3.2, 4.6, 5.9, 6.9, 6.6, NA)
+    mean(he)
+    ## [1] 867.0167
+    mean(log.he)
+    ## [1] NA
+    mean(log.he, na.rm=TRUE)
+    ## [1] 5.44
+** Anatomie von Funktionen
+    # umstaendlich
+    Id <- c(1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4)
+    Id
+    ##  [1] 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4 4
+    # regelmässige Reihenfolgen mit rep()
+    ( Id <- rep(x = 1:4,  each = 8) )
+    ##  [1] 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4 4
+    # mit Argumentennamen ist auch die Reihenfolge der Argumente egal
+    (       rep(each = 8, x = 1:4 ) )
+    ##  [1] 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4 4
+    # Kurzschreibweise ohne Argumentennamen!
+    # Ausnahme: save(file=) 'file=' ist notwendig, kann nich weggelassen werden
+    # Beachte default Reihenfolge der Argumente!
+    rep(1:4, 8)
+    ##  [1] 1 2 3 4 1 2 3 4 1 2 3 4 1 2 3 4 1 2 3 4 1 2 3 4 1 2 3 4 1 2 3 4
+    # das 2. Argument ist 'times' nicht 'each'
+    # ?rep
+    # ... rep(x, times = 1, length.out = NA, each = 1)
+    # da rep() ist generisch, also gehen auch characters
+    cont.seq <- rep(c("Africa","Asia","Australia","Europe"), each = 8)
+    head(cont.seq)
+    ## [1] "Africa" "Africa" "Africa" "Africa" "Africa" "Africa"
+** Übung 4
+** Matrix
+** matrix
+    cig=c(393.9, 1520.8, 1464.0, 2065.9, 1018.5, 902.0)
+    Z <- cbind(L, cig, he, log.he) # cbind() kombiniere Vektoren spaltenweise
+    head(Z,2) # der 'Kopf' von Z mit den ersten 2 Zeilen: bei vielen Zeilen!
+    ##         L    cig  he log.he
+    ## [1,] 44.7  393.9  44    3.2
+    ## [2,] 59.0 1520.8 340    4.6
+    # Matrix[row, col]
+    # ... gib mir alle Zeilen der ersten Spalte
+    Z[,1]
+    ## [1] 44.7 59.0 63.7 68.0 66.9 60.8
+${Z_{i\bullet}}$
+    # ... gib mir alle Spalten der ersten Zeile
+    Z[1,]
+    ##      L    cig     he log.he
+    ##   44.7  393.9   44.0    3.2
+${Z_{ij}\: mit\: i:1..5,j:1}$
+    # ... gib mir die Zeilen eins bis acht von Spalte eins
+    Z[1 : 5, 1]
+    ## [1] 44.7 59.0 63.7 68.0 66.9
+** Matrix cont'd
+    (data.vector=c(L, cig, he, log.he))                  # Verlust der namen der Vektoren
+    ##  [1]   44.7   59.0   63.7   68.0   66.9   60.8  393.9 1520.8 1464.0 2065.9
+    ## [11] 1018.5  902.0   44.0  340.0 1126.6 1983.9 1532.8  174.8    3.2    4.6
+    ## [21]    5.9    6.9    6.6     NA
+    (M=matrix(data=data.vector, nrow = 6, byrow = TRUE)) # ncol ist redundant
+    ##        [,1]   [,2]   [,3]   [,4]
+    ## [1,]   44.7   59.0   63.7   68.0
+    ## [2,]   66.9   60.8  393.9 1520.8
+    ## [3,] 1464.0 2065.9 1018.5  902.0
+    ## [4,]   44.0  340.0 1126.6 1983.9
+    ## [5,] 1532.8  174.8    3.2    4.6
+    ## [6,]    5.9    6.9    6.6     NA
+** Die Eigenschaften des Matrix-Objektes
+    dim(M) # Eigenschaft Dimensionierung
+    ## [1] 6 4
+    colnames(M) <- c('le', 'cig', 'he', 'log.he') # Spaltennamen
+    colnames(M) # mit Z[1,] sieht man die Variablennamen auch
+    ## [1] "le"     "cig"    "he"     "log.he"
+    M[,'le']
+    ## [1]   44.7   66.9 1464.0   44.0 1532.8    5.9
+    M[,c('cig','he')]
+    ##         cig     he
+    ## [1,]   59.0   63.7
+    ## [2,]   60.8  393.9
+    ## [3,] 2065.9 1018.5
+    ## [4,]  340.0 1126.6
+    ## [5,]  174.8    3.2
+    ## [6,]    6.9    6.6
+** Matrixoperationen
+    ( X=matrix(1:4, ncol=2) )
+    ##      [,1] [,2]
+    ## [1,]    1    3
+    ## [2,]    2    4
+    t(X)
+    ##      [,1] [,2]
+    ## [1,]    1    2
+    ## [2,]    3    4
+    solve(X)   # solve(x) ergibt die Inverse; solve(A,b) löst Ax=b
+    ##      [,1] [,2]
+    ## [1,]   -2  1.5
+    ## [2,]    1 -0.5
+    X %*% c(1:2)
+    ##      [,1]
+    ## [1,]    7
+    ## [2,]   10
+    # model.matrix(~., data) %*% coef(lm(y~., data))
+    # predict(lm(y~., data))
+** Übung 5
+** Datensatz
+** data.frame
+    dl <- data.frame(   le = L,
+                       cig = cig,
+                        he = he,
+                     lg.he = log.he)
+    head(dl,3)
+    ##     le    cig     he lg.he
+    ## 1 44.7  393.9   44.0   3.2
+    ## 2 59.0 1520.8  340.0   4.6
+    ## 3 63.7 1464.0 1126.6   5.9
+    # Der $elect Operator
+    dl$le
+    ## [1] 44.7 59.0 63.7 68.0 66.9 60.8
+** Variablen - erzeugen, umwandeln, dekodieren
+    Smoking <- read.table('Smoking.txt')
+    Smoking <- within(Smoking, {
+              zLE = scale(LE)
+            logHE = log(HealthExpPC)
+           health = HealthExpPC
+      HealthExpPC = NULL
+              fLE = cut(LE, 3, labels=c('young','mature','old'))
+              fHE = cut(logHE, 3, labels=c('A','B','C'))
+          fCigCon = cut(CigCon, 3, labels=c('low','medium','strong'))
+    }) # beachte ( ... {...})
+    head(Smoking,3)
+    ##                 Country Continent   LE CigCon        LE.q Cont  Cont2 Year
+    ## Afghanistan Afghanistan      Asia 35.5     98 (28.6,40.2] Asia   Asia 2004
+    ## Albania         Albania    Europe 61.4     NA (51.8,63.4] Eurp Europe 2004
+    ## Algeria         Algeria    Africa 60.6   1021 (51.8,63.4] Afrc Africa 2004
+    ##                     HE    LogHE        HE5 fCigCon fHE   fLE health
+    ## Afghanistan [0.3,31.1] 2.602690 [0.3,24.2]     low   B young   13.5
+    ## Albania      (152,476] 5.056883 (81.2,212]    <NA>   B   old  157.1
+    ## Algeria     (31.1,152] 4.542230 (81.2,212]     low   B   old   93.9
+    ##                logHE        zLE
+    ## Afghanistan 2.602690 -2.0113058
+    ## Albania     5.056883  0.3411997
+    ## Algeria     4.542230  0.2685355
+** Klasse factor: nominal & ordinal
+    class(Smoking$fHE)
+    ## [1] "factor"
+    head(Smoking$fHE)
+    ## [1] B B B C B C
+    ## Levels: A B C
+    data.frame(label=levels(Smoking$fHE), level=as.numeric(factor(c('A','B','C'))),
+               B = c(0,1,0), C = c(0,0,1)  )
+    ##   label level B C
+    ## 1     A     1 0 0
+    ## 2     B     2 1 0
+    ## 3     C     3 0 1
+    args(factor)
+    ## function (x = character(), levels, labels = levels, exclude = NA,
+    ##     ordered = is.ordered(x), nmax = NA)
+    ## NULL
+    head( as.numeric(Smoking$fHE)   )
+    ## [1] 2 2 2 3 2 3
+    head( as.character(Smoking$fHE) )
+    ## [1] "B" "B" "B" "C" "B" "C"
+    # args(data.frame) - string.as.factor = FALSE
+** Übung 6
+** Listen
+** list
+    x1 <- 1:3
+    x2 <- c('a', 'b', 'c', 'd')
+    x3 <- 3
+    x4 <- matrix(data=1:4, nrow = 2)
+    ( Yl <- list(x1 = x1, x2 = x2, x3 = x3, x4 = x4) )
+    ## $x1
+    ## [1] 1 2 3
+    ##
+    ## $x2
+    ## [1] "a" "b" "c" "d"
+    ##
+    ## $x3
+    ## [1] 3
+    ##
+    ## $x4
+    ##      [,1] [,2]
+    ## [1,]    1    3
+    ## [2,]    2    4
+    # double brackets notation: reference by name
+    Yl[['x1']]
+    ## [1] 1 2 3
+    # double brackets notation: reference by index
+    Yl[[1]]
+    ## [1] 1 2 3
+    # select Operator notatin: reference by name
+    Yl$x1
+    ## [1] 1 2 3
+** Listen bei Ausgaben
+    fit <- lm(le ~ cig, data = dl)
+    names(fit)
+    ##  [1] "coefficients"  "residuals"     "effects"       "rank"
+    ##  [5] "fitted.values" "assign"        "qr"            "df.residual"
+    ##  [9] "xlevels"       "call"          "terms"         "model"
+    fit$coefficients
+    ## (Intercept)         cig
+    ## 47.19042619  0.01085626
+    fit$coefficients[1]
+    ## (Intercept)
+    ##    47.19043
+    # dafuer gibt es aber die Extraktionsfunktionen
+    coef(fit)
+    ## (Intercept)         cig
+    ## 47.19042619  0.01085626
+    # der @ Operator bei S4 Klassen
+    # ... wie $ bei listen
+** Übung 7
+* Daten I/O
+** Daten einlesen
+** Argumente von read.table()
+    ##              lNames                      string
+    ## 1              file
+    ## 2            header                       FALSE
+    ## 3               sep
+    ## 4             quote                          "'
+    ## 5               dec                           .
+    ## 6          numerals callow.losswarn.lossno.loss
+    ## 7         row.names
+    ## 8         col.names
+    ## 9             as.is           !stringsAsFactors
+    ## 10       na.strings                          NA
+    ## 11       colClasses
+    ## 12            nrows                          -1
+    ## 13             skip                           0
+    ## 14      check.names                        TRUE
+    ## 15             fill           !blank.lines.skip
+    ## 16      strip.white                       FALSE
+    ## 17 blank.lines.skip                        TRUE
+    ## 18     comment.char                           #
+    ## 19     allowEscapes                       FALSE
+    ## 20            flush                       FALSE
+    ## 21 stringsAsFactors    default.stringsAsFactors
+    ## 22     fileEncoding
+    ## 23         encoding                     unknown
+    ## 24             text
+    ## 25          skipNul                       FALSE
+** Daten ausgeben
+* Manipulation
+** Verbinden, Verändern, Filtern
+** Datensätze verbinden
+    cl <- read.table('CigLE.txt')
+    head(cl,3)
+    ##       Country Continent   LE CigCon
+    ## 1 Afghanistan      Asia 35.5     98
+    ## 2     Albania    Europe 61.4     NA
+    ## 3     Algeria    Africa 60.6   1021
+    ch <- read.table('HealthExpPerCap.txt')
+    head(ch,3)
+    ##       Country HealthExpPC Year
+    ## 1 Afghanistan        13.5 2004
+    ## 2     Albania       157.1 2004
+    ## 3     Algeria        93.9 2004
+    db = merge( cl, ch, by = 'Country', all = T)
+    info=data.frame(CigLE=dim(cl),HealthExp=dim(ch), Both=dim(db)); rownames(info)=c('cases','variables'); info
+    ##           CigLE HealthExp Both
+    ## cases       189       188  198
+    ## variables     4         3    6
+    library(dplyr)
+    db = full_join(  cl, ch, by = 'Country' ) # sql-notation left or right join ...
+    head(db)
+    ##               Country     Continent   LE CigCon HealthExpPC Year
+    ## 1         Afghanistan          Asia 35.5     98        13.5 2004
+    ## 2             Albania        Europe 61.4     NA       157.1 2004
+    ## 3             Algeria        Africa 60.6   1021        93.9 2004
+    ## 4             Andorra        Europe 72.2     NA      2453.1 2004
+    ## 5              Angola        Africa 33.4    571        25.5 2004
+    ## 6 Antigua and Barbuda South America 61.9     NA       485.3 2004
+** Filtern
+    head(Smoking$fHE, 20)
+    ##  [1] B B B C B C C B C C B C C B C B C B B B
+    ## Levels: A B C
+    head(Smoking$fHE == 'B', 20)
+    ##  [1]  TRUE  TRUE  TRUE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE
+    ## [12] FALSE FALSE  TRUE FALSE  TRUE FALSE  TRUE  TRUE  TRUE
+    B <- db[ Smoking$fHE == 'B', ]
+    db[ Smoking$fHE == 'A' & Smoking$fCigCon == 'low', 'Country' ]
+    ##  [1] NA
+    ##  [2] "Burundi"
+    ##  [3] "Congo, Democratic Republic of the"
+    ##  [4] NA
+    ##  [5] "Fiji"
+    ##  [6] NA
+    ##  [7] "Malawi"
+    ##  [8] NA
+    ##  [9] NA
+    ## [10] NA
+    ## [11] NA
+    ## [12] NA
+** Ausklammern
+    with(Smoking,
+         Smoking[ fHE == 'A' & fCigCon == 'low', 'Country' ]
+    )
+    ##  [1] <NA>                              Burundi
+    ##  [3] Congo, Democratic Republic of the <NA>
+    ##  [5] Ethiopia                          <NA>
+    ##  [7] Madagascar                        <NA>
+    ##  [9] <NA>                              <NA>
+    ## [11] <NA>                              <NA>
+    ## 192 Levels: Afghanistan Albania Algeria Andorra ... Zimbabwe
+** Aktuelle Vereinfachungen & Erweiterungen
+** data.table
+    library(data.table) # leichtere Indizierung ohne $
+    DB = as.data.table(Smoking)
+    DB[ fHE == 'A' & fCigCon == 'low', Country ]
+    ## [1] Burundi                           Congo, Democratic Republic of the
+    ## [3] Ethiopia                          Madagascar
+    ## 192 Levels: Afghanistan Albania Algeria Andorra ... Zimbabwe
+** Piping
+    # A) Schrittweise
+    v = rnorm( 10, mean = 4, sd = 4)   # 1. 10 normalverteilte Zufallszahlen
+    m = mean( x = v, trim = .1 )       # 2. der getrimmte Mittelwert
+    round( m )                         # 3. runden
+    ## [1] 5
+    # B) Verschachtelt, ohne Zwischenschritte
+    round ( mean( x = rnorm( 10, mean = 4, sd = 4), trim = .1 ) )
+    ## [1] 4
+    # C) mit piping!
+    library(dplyr)
+    10 %>% rnorm( mean = 4, sd = 4) %>% mean( trim = .1 ) %>% round
+    ## [1] 4
+    # Am Beispiel der WHO-Daten
+    Smoking$zLE = NULL # data_frame kann mit dem z-Werte-Vektor nicht umgehen
+    Smoking %>% filter(fHE == 'A' & fCigCon == 'low') %>% select(Country)
+    ##                             Country
+    ## 1                           Burundi
+    ## 2 Congo, Democratic Republic of the
+    ## 3                          Ethiopia
+    ## 4                        Madagascar
+** Übung 7.1
+** Restrukturieren & Aggregieren
+** Umstrukturieren
+** Weite und lange Daten
+    library(tidyr)
+    m<-data.frame(c('hans','peter'), matrix(1:4, ncol=2, byrow=F))
+    names(m)=c('id','first','second')
+    m
+    ##      id first second
+    ## 1  hans     1      3
+    ## 2 peter     2      4
+    gather(m, key = time, value = measure, -id )
+    ##      id   time measure
+    ## 1  hans  first       1
+    ## 2 peter  first       2
+    ## 3  hans second       3
+    ## 4 peter second       4
+** long
+    m<-data.frame( rep(c('h','p'),2), rep(c('A','B'),each=2), matrix(1:8, ncol=2, byrow=F) )
+    names(m)=c('id','F','f','s')
+    m
+    ##   id F f s
+    ## 1  h A 1 5
+    ## 2  p A 2 6
+    ## 3  h B 3 7
+    ## 4  p B 4 8
+    gather(m, key=time, value = measure, -id:-F) # gather(m, key=time, value = measure, f:s)
+    ##   id F time measure
+    ## 1  h A    f       1
+    ## 2  p A    f       2
+    ## 3  h B    f       3
+    ## 4  p B    f       4
+    ## 5  h A    s       5
+    ## 6  p A    s       6
+    ## 7  h B    s       7
+    ## 8  p B    s       8
+** Pivoting
+** spread - wide format
+    # weites Format
+    m
+    ##   id F f s
+    ## 1  h A 1 5
+    ## 2  p A 2 6
+    ## 3  h B 3 7
+    ## 4  p B 4 8
+    # langes Format
+    m %>%
+    gather(time, measure, -id:-F)
+    ##   id F time measure
+    ## 1  h A    f       1
+    ## 2  p A    f       2
+    ## 3  h B    f       3
+    ## 4  p B    f       4
+    ## 5  h A    s       5
+    ## 6  p A    s       6
+    ## 7  h B    s       7
+    ## 8  p B    s       8
+  </div>
+    # neue SchlüsselVariable
+    m %>%
+    gather(time, measure, -id:-F) %>%
+    unite(temp, F, time)
+    ##   id temp measure
+    ## 1  h  A_f       1
+    ## 2  p  A_f       2
+    ## 3  h  B_f       3
+    ## 4  p  B_f       4
+    ## 5  h  A_s       5
+    ## 6  p  A_s       6
+    ## 7  h  B_s       7
+    ## 8  p  B_s       8
+    # zurück in das weite Format
+    m %>%
+    gather(time, measure, -id:-F) %>%
+    unite(temp, F, time) %>%
+    spread(temp, measure)
+    ##   id A_f A_s B_f B_s
+    ## 1  h   1   5   3   7
+    ## 2  p   2   6   4   8
+** Aggregieren: group\_by() & summarise()
+    m %>%
+        gather(time, measure, -id:-F) %>%
+        group_by(time, F) %>%
+        summarise(mean = mean(measure), n = n(), median = max(measure))
+    ## Source: local data frame [4 x 5]
+    ## Groups: time [?]
+    ##
+    ##    time      F  mean     n median
+    ##   (chr) (fctr) (dbl) (int)  (int)
+    ## 1     f      A   1.5     2      2
+    ## 2     f      B   3.5     2      4
+    ## 3     s      A   5.5     2      6
+    ## 4     s      B   7.5     2      8
+** Übung 8
+* Funktionen
+** Eigene Funktionen schreiben
+** The 3 magical dots
+    meine.funktion <- function(Argumente, ... ) {
+        Anweisungen
+        Rückgabe
+    }
+    meine.matrix <- function(x, ...) { matrix(x, ...) }
+    meine.matrix(1:4)
+    ##      [,1]
+    ## [1,]    1
+    ## [2,]    2
+    ## [3,]    3
+    ## [4,]    4
+    meine.matrix(1:4, ncol = 2, byrow = T)
+    ##      [,1] [,2]
+    ## [1,]    1    2
+    ## [2,]    3    4
+** defaults setzten
+    meine.funktion <- function(Argument1 = 'dieses', Argument2='jenes', ...) {
+        Anweisungen
+        Rückgabe
+    }
+    meine.matrix <- function(x, ...) { matrix(x, ...) }
+    meine.matrix(1:4)
+    ##      [,1]
+    ## [1,]    1
+    ## [2,]    2
+    ## [3,]    3
+    ## [4,]    4
+    meine.matrix(1:4, ncol = 2, byrow = T)
+    ##      [,1] [,2]
+    ## [1,]    1    2
+    ## [2,]    3    4
+** defaults setzten cont'd
+    meine.matrix <- function(x = 1:4, ncol = 2, byrow = T, ...) {
+        matrix(x, ncol = ncol, byrow = byrow, ...)
+    }
+    meine.matrix( )
+    ##      [,1] [,2]
+    ## [1,]    1    2
+    ## [2,]    3    4
+    meine.matrix(1:6, ncol = 3, byrow = F)
+    ##      [,1] [,2] [,3]
+    ## [1,]    1    3    5
+    ## [2,]    2    4    6
+** Übung
+* Vektorisierung
+** Meet the apply family
+** sapply in Aktion
+    source('Concepts.R')
+      sapply(X = ls(), FUN=function(x) class( get(x) ) )
+    ##          dfm           lm           mn          tab           vc
+    ## "data.frame"       "list"     "matrix"      "table"  "character"
+    ##           vl           vn
+    ##    "logical"    "numeric"
+    wuerfel <- function(Seiten, N, Augenzahl) {
+      x = sample(1:Seiten, N, replace = T)
+      sum(x == Augenzahl)
+    }
+    (v=seq(from=100,to=1000, by=100))
+    ##  [1]  100  200  300  400  500  600  700  800  900 1000
+    sapply(X=v, FUN=function(i) wuerfel(Seiten = 10, N = i, Augenzahl = 8) )
+    ##  [1]   9  19  44  32  51  53  74  86  89 100
+** Argumentenweitergabe & anonyme Funktionen
+    args(sapply)
+    ## function (X, FUN, ..., simplify = TRUE, USE.NAMES = TRUE)
+    ## NULL
+    # Das Argument 'v' wird durch ... implizit an 'N' übergeben.
+    sapply(X = v, FUN = wuerfel, Seiten = 10, Augenzahl = 8)
+    ##  [1] 14 13 23 35 51 49 60 83 74 95
+    # Das Argument 'v' wird durch 'i' explizit an 'N' übergeben v -> i -> N.
+    sapply(X = v, FUN = function(i) wuerfel(10,N=i,8) )
+    ##  [1] 11 17 33 45 37 62 69 81 85 98
+    # Der code von 'wuerfel' wird in den Funktionsaufruf geschrieben und der Funktionsname
+    # ...'wuerfel' verschwindet. Die Funtion selber wird zu einer anonymen Funktion.
+    sapply(X = v, FUN = function(i) {
+                                      x <- sample(1:10, size = i, replace = T)
+                                      sum(x == 8)
+    } )
+    ##  [1]   8  28  35  33  51  67  60  76  86 105
+** Übung 10
+** mapply in Aktion
+    head( expand.grid(N=v, Seiten=4:10, Augenzahl=1:10) )
+    ##     N Seiten Augenzahl
+    ## 1 100      4         1
+    ## 2 200      4         1
+    ## 3 300      4         1
+    ## 4 400      4         1
+    ## 5 500      4         1
+    ## 6 600      4         1
+    tail( d <- expand.grid(N=v, Seiten=4:10, Augenzahl=1:10) )
+    ##        N Seiten Augenzahl
+    ## 695  500     10        10
+    ## 696  600     10        10
+    ## 697  700     10        10
+    ## 698  800     10        10
+    ## 699  900     10        10
+    ## 700 1000     10        10
+    # Eigene Funktionen auf jedes element multipler Vektoren applizieren
+    result <- mapply( FUN = wuerfel,
+                   Seiten = d$Seiten,
+                        N = d$N,
+                Augenzahl = d$Augenzahl )
+    head(result)
+    ## [1]  26  46  66  94 123 146
+* Graphik
+** Übersicht
+** Traditionelle Grafik: Elemente
+* ggplot2
+** geometric icons & aesthetics
+** Übung 11
+** Konditionale Plots: facetting
+** farbliche Gruppierungen
+** Übung 12
+** Konditionale Vorhersagen
+* Lösungen
+** Übung 1
+    # setwd('~/YourDirectory/subdirectory/')
+    source('Concepts.R')
+    ls()
+    ## [1] "dfm" "lm"  "mn"  "tab" "vc"  "vl"  "vn"
+    class(vl)
+    ## [1] "logical"
+    mode(vl)
+    ## [1] "logical"
+    attributes(vl)
+    ## NULL
+    # ...
+    ##     class        mode        n.attr names
+    ## dfm "data.frame" "list"      "3"    "names|row.names|class"
+    ## lm  "list"       "list"      "1"    "names"
+    ## mn  "matrix"     "numeric"   "1"    "dim"
+    ## tab "table"      "numeric"   "3"    "dim|dimnames|class"
+    ## vc  "character"  "character" "0"    ""
+    ## vl  "logical"    "logical"   "0"    ""
+    ## vn  "numeric"    "numeric"   "1"    "names"
+** Übung 2
+    plot(tab, las=2) # mosaicplot
+    plot(mn)         # scatterplot of column 1 by 2
+    plot(vn)         # scatterplot value x index
+    plot(vl)         # TRUE: 1, FALSE: 0
+    plot(dfm)
+    # the default
+    # ... plot-behavior
+    # ... is the scatterplot-matrix
+** Übung 3
+    (v <- 1:6)
+    ## [1] 1 2 3 4 5 6
+    c( v[  -1   ] ,  NA)
+    ## [1]  2  3  4  5  6 NA
+    c(NA, v[-length(v)])
+    ## [1] NA  1  2  3  4  5
+** Übung 4
+    rep(c("a", "b", "c"), each = 2)
+    ## [1] "a" "a" "b" "b" "c" "c"
+    rep(1:2, times = 3)
+    ## [1] 1 2 1 2 1 2
+    rep(rep(1:3, each = 2), times = 3)
+    ##  [1] 1 1 2 2 3 3 1 1 2 2 3 3 1 1 2 2 3 3
+    rep(paste("A", 1:3, sep = ":"), each = 2)
+    ## [1] "A:1" "A:1" "A:2" "A:2" "A:3" "A:3"
+** Übung 5
+    # 1.
+    (A <- matrix(1:9, ncol=3, byrow=T) )
+    ##      [,1] [,2] [,3]
+    ## [1,]    1    2    3
+    ## [2,]    4    5    6
+    ## [3,]    7    8    9
+    # 2.
+    A[-3, -3]
+    ##      [,1] [,2]
+    ## [1,]    1    2
+    ## [2,]    4    5
+    # 3.
+    X = matrix( data = c( 1, 1, 0.01,
+                          1, 4, 0.30,
+                          1, 4, 1.50), byrow = T, ncol=3)
+    y = c(53.04, 48.2, 53)
+    solve(X) %*% y  # ... lm(y~0+X)
+    ##      [,1]
+    ## [1,]   55
+    ## [2,]   -2
+    ## [3,]    4
+** Übung 6
+    dd <- data.frame(    CigCon = c(394, 1521, 1464, 2066, 1019, 902),
+              Continent = c("Africa", "Asia", "Australia", "Europe", "NorthAmerica", "South America"),
+                  LogHE = c(3, 5, 6, 7, 7, 5),
+                     HE = c(44, 340, 1127, 1984, 1533, 175)
+                     )
+    dd <- within( dd, {
+        cigDay = CigCon/365
+     gmHEmonth = exp(LogHE)/12
+     amHEmonth = HE/12
+    })
+    dd
+    ##   CigCon     Continent LogHE   HE  amHEmonth gmHEmonth   cigDay
+    ## 1    394        Africa     3   44   3.666667  1.673795 1.079452
+    ## 2   1521          Asia     5  340  28.333333 12.367763 4.167123
+    ## 3   1464     Australia     6 1127  93.916667 33.619066 4.010959
+    ## 4   2066        Europe     7 1984 165.333333 91.386097 5.660274
+    ## 5   1019  NorthAmerica     7 1533 127.750000 91.386097 2.791781
+    ## 6    902 South America     5  175  14.583333 12.367763 2.471233
+    # alternativ
+    # dd$cigDay = dd$CigCon/365
+    # ...
+** Übung 7
+    opt <- options()
+    names(opt)
+    ##  [1] "add.smooth"                     "bitmapType"
+    ##  [3] "browser"                        "browserNLdisabled"
+    ##  [5] "CBoundsCheck"                   "check.bounds"
+    ##  [7] "chron.year.abb"                 "chron.year.expand"
+    ##  [9] "citation.bibtex.max"            "continue"
+    ## [11] "contrasts"                      "datatable.alloccol"
+    ## [13] "datatable.allow.cartesian"      "datatable.auto.index"
+    ## [15] "datatable.dfdispatchwarn"       "datatable.fread.datatable"
+    ## [17] "datatable.fread.dec.experiment" "datatable.fread.dec.locale"
+    ## [19] "datatable.integer64"            "datatable.nomatch"
+    ## [21] "datatable.old.bywithoutby"      "datatable.optimize"
+    ## [23] "datatable.print.nrows"          "datatable.print.topn"
+    ## [25] "datatable.showProgress"         "datatable.verbose"
+    ## [27] "datatable.warnredundantby"      "defaultPackages"
+    ## [29] "demo.ask"                       "deparse.cutoff"
+    ## [31] "device"                         "device.ask.default"
+    ## [33] "digits"                         "dplyr.print_max"
+    ## [35] "dplyr.print_min"                "dplyr.show_progress"
+    ## [37] "dplyr.strict_sql"               "dvipscmd"
+    ## [39] "echo"                           "editor"
+    ## [41] "encoding"                       "example.ask"
+    ## [43] "expressions"                    "help.search.types"
+    ## [45] "help.try.all.packages"          "HTTPUserAgent"
+    ## [47] "internet.info"                  "keep.source"
+    ## [49] "keep.source.pkgs"               "knitr.in.progress"
+    ## [51] "locatorBell"                    "mailer"
+    ## [53] "max.print"                      "menu.graphics"
+    ## [55] "na.action"                      "nwarnings"
+    ## [57] "OutDec"                         "pager"
+    ## [59] "papersize"                      "pdfviewer"
+    ## [61] "pkgType"                        "printcmd"
+    ## [63] "prompt"                         "repos"
+    ## [65] "rl_word_breaks"                 "scipen"
+    ## [67] "show.coef.Pvalues"              "show.error.messages"
+    ## [69] "show.signif.stars"              "showErrorCalls"
+    ## [71] "str"                            "str.dendrogram.last"
+    ## [73] "stringsAsFactors"               "texi2dvi"
+    ## [75] "tikzMetricsDictionary"          "timeout"
+    ## [77] "ts.eps"                         "ts.S.compat"
+    ## [79] "unzip"                          "useFancyQuotes"
+    ## [81] "verbose"                        "warn"
+    ## [83] "warning.length"                 "width"
+    opt$contrasts
+    ##         unordered           ordered
+    ## "contr.treatment"      "contr.poly"
+** Übung 7.1 piping
+    library(ggplot2movies);library(data.table); library(dplyr)
+    #1. piping
+    movies %>% select(title, rating, votes) %>%  arrange(desc( votes), desc(rating) )
+    ## Source: local data frame [58,788 x 3]
+    ##
+    ##                                                 title rating  votes
+    ##                                                 (chr)  (dbl)  (int)
+    ## 1  Lord of the Rings: The Fellowship of the Ring, The    8.8 157608
+    ## 2                           Shawshank Redemption, The    9.1 149494
+    ## 3                                         Matrix, The    8.5 143853
+    ## 4                                           Star Wars    8.8 134640
+    ## 5                                        Pulp Fiction    8.8 132745
+    ## 6                                      Godfather, The    9.1 122755
+    ## 7              Lord of the Rings: The Two Towers, The    8.8 114797
+    ## 8                                          Fight Club    8.5 112092
+    ## 9                                     American Beauty    8.5 109991
+    ## 10                                Usual Suspects, The    8.7 103854
+    ## ..                                                ...    ...    ...
+** Übung 7.1 base-R
+    # 1. base-R
+    movies <- data.frame(movies)
+    head(
+          with(movies ,
+               movies[order(-votes,-rating), c('title', 'rating', 'votes')] ),
+          10
+    )
+    ##                                                    title rating  votes
+    ## 30658 Lord of the Rings: The Fellowship of the Ring, The    8.8 157608
+    ## 46269                          Shawshank Redemption, The    9.1 149494
+    ## 32710                                        Matrix, The    8.5 143853
+    ## 48908                                          Star Wars    8.8 134640
+    ## 41662                                       Pulp Fiction    8.8 132745
+    ## 20545                                     Godfather, The    9.1 122755
+    ## 30660             Lord of the Rings: The Two Towers, The    8.8 114797
+    ## 17657                                         Fight Club    8.5 112092
+    ## 2106                                     American Beauty    8.5 109991
+    ## 54665                                Usual Suspects, The    8.7 103854
+** Übung 7.1 data.table
+    # 1. data.table
+    MOV = as.data.table(movies)
+    MOV[ order(-votes, rating)  ,.(title, rating, votes) ]
+    ##                                                     title rating  votes
+    ##     1: Lord of the Rings: The Fellowship of the Ring, The    8.8 157608
+    ##     2:                          Shawshank Redemption, The    9.1 149494
+    ##     3:                                        Matrix, The    8.5 143853
+    ##     4:                                          Star Wars    8.8 134640
+    ##     5:                                       Pulp Fiction    8.8 132745
+    ##    ---
+    ## 58784:                                 Trial of Jack, The    9.8      5
+    ## 58785:                                        Victim, The    9.8      5
+    ## 58786:            Dimensia Minds Trilogy: The Hope Factor   10.0      5
+    ## 58787:                                   Fishing for Love   10.0      5
+    ## 58788:                                   Summer Sonata, A   10.0      5
+** Übung 7.2 piping
+    # 2. piping
+    movies <- tbl_df(movies)
+    movies %>% select(title, rating, votes, Documentary) %>%  filter(Documentary == 1 ) %>% arrange(desc( votes), desc(rating) )
+    ## Source: local data frame [3,472 x 4]
+    ##
+    ##                                         title rating votes Documentary
+    ##                                         (chr)  (dbl) (int)       (int)
+    ## 1                       Bowling for Columbine    8.5 36747           1
+    ## 2                             Fahrenheit 9/11    7.9 34666           1
+    ## 3                               Super Size Me    7.7  9487           1
+    ## 4                          Jackass: The Movie    6.1  8893           1
+    ## 5                                  Roger & Me    7.7  7674           1
+    ## 6                               Koyaanisqatsi    7.9  4928           1
+    ## 7                                 Hoop Dreams    7.9  4668           1
+    ## 8                           Touching the Void    8.1  3671           1
+    ## 9                                       Crumb    7.6  3528           1
+    ## 10 American Movie: The Making of Northwestern    7.5  3421           1
+    ## ..                                        ...    ...   ...         ...
+** Übung 7.2 base-R
+    # 2. base-R
+    movies <- data.frame(movies)
+    md <-  with(movies,
+                movies[ Documentary == 1, ])
+    head(
+        with(md,
+             md[order(-votes,-rating), c('title', 'rating', 'votes')]
+       )
+    )
+    ##                       title rating votes
+    ## 7104  Bowling for Columbine    8.5 36747
+    ## 16895       Fahrenheit 9/11    7.9 34666
+    ## 49972         Super Size Me    7.7  9487
+    ## 26098    Jackass: The Movie    6.1  8893
+    ## 43742            Roger & Me    7.7  7674
+    ## 28361         Koyaanisqatsi    7.9  4928
+** Übung 7.3 data.table
+    # 2. data.table
+    MOV[ Documentary == 1  ,.(title, rating, votes, Documentary) ][ order(-votes, rating) ]
+    ##                                        title rating votes Documentary
+    ##    1:                  Bowling for Columbine    8.5 36747           1
+    ##    2:                        Fahrenheit 9/11    7.9 34666           1
+    ##    3:                          Super Size Me    7.7  9487           1
+    ##    4:                     Jackass: The Movie    6.1  8893           1
+    ##    5:                             Roger & Me    7.7  7674           1
+    ##   ---
+    ## 3468:    TransAmazon: A Gender Queer Journey    9.6     5           1
+    ## 3469:                        Shoe Store, The    9.7     5           1
+    ## 3470:                            Tupperware!    9.7     5           1
+    ## 3471: Ennio Morricone: la musica negli occhi    9.8     5           1
+    ## 3472:        Meet the Stars: Meet Roy Rogers    9.8     5           1
+** Übung 8
+    library(dplyr)
+    Smoking <- read.table(file="Smoking.txt", header =TRUE)
+    # 1. & 2.
+    Smoking %>% na.omit %>%
+       select(LE, HealthExpPC, Continent, LogHE, CigCon) %>%
+       mutate(CigCon=CigCon/365, HealthExpPC=HealthExpPC/1000) %>%
+       group_by(Continent) %>%
+       summarise_each(funs(mean))
+    ## Source: local data frame [6 x 5]
+    ##
+    ##       Continent       LE HealthExpPC    LogHE   CigCon
+    ##          (fctr)    (dbl)       (dbl)    (dbl)    (dbl)
+    ## 1        Africa 44.65556  0.04402222 3.193846 1.079046
+    ## 2          Asia 58.99583  0.34002542 4.593530 4.166553
+    ## 3     Australia 63.70000  1.12660000 5.910527 4.010959
+    ## 4        Europe 68.00741  1.98393000 6.935007 5.660071
+    ## 5 North America 66.91250  1.53275000 6.617409 2.790411
+    ## 6 South America 60.75333  0.17475333 4.968074 2.471233
+** Übung 8 cont'd
+    # 3.
+    library(tidyr)
+    Smoking %>% na.omit %>%
+      select(LE, HealthExpPC, Continent, LogHE, CigCon) %>%
+      mutate(fCigCon = cut(CigCon, 3, labels=c('low','medium','strong')),
+                 fHE = cut(LogHE,  3, labels=c('poor','average','rich'))) %>%
+      group_by(fCigCon, fHE) %>%
+      summarise(n = n()) %>%
+      spread(fCigCon, n)
+    ## Source: local data frame [3 x 4]
+    ##
+    ##       fHE   low medium strong
+    ##    (fctr) (int)  (int)  (int)
+    ## 1    poor    27      3     NA
+    ## 2 average    31     14     NA
+    ## 3    rich     6     19      4
+** Übung 8: Vorschau - Grafik
+    library(productplots)
+    Smoking %>% na.omit %>%
+          select(LE, HealthExpPC, Continent, LogHE, CigCon) %>%
+          mutate(fCigCon = cut(CigCon, 3, labels=c('low','medium','strong')),
+                 fHE = cut(LogHE,  3, labels=c('poor','average','rich'))) %>%
+          prodplot( ~fHE+fCigCon) + aes(fill=fHE)
+** Übung 9
+    # 9.1
+    cd <- function(wd) {setwd(wd) }
+    # 9.2
+    lottery <- function(bet) {
+        sample <- sample(1:49, 6, replace=F)
+        hit    <- bet %in% sample
+        list(win = sum( hit ), hit = hit, sample=sample, bet=bet)
+    }
+    lottery( bet = 1:6 )
+    ## $win
+    ## [1] 2
+    ##
+    ## $hit
+    ## [1] FALSE  TRUE FALSE FALSE  TRUE FALSE
+    ##
+    ## $sample
+    ## [1] 39 21  5 25  2 27
+    ##
+    ## $bet
+    ## [1] 1 2 3 4 5 6
+** Übung 9 cont'd
+    # 9.3
+    lottery <- function(bet,  n=49, ...) {
+        sample <- sample(1:n, 6, ... )
+        hit <- bet %in% sample
+        list(win=sum( hit ), sample = sample, bet = bet)
+    }
+    lottery( bet = 1:6 ) # default simulate 6:49
+    ## $win
+    ## [1] 0
+    ##
+    ## $sample
+    ## [1] 30 48 42  8 20 38
+    ##
+    ## $bet
+    ## [1] 1 2 3 4 5 6
+    # lottery( bet = 1:6, n = 46 ) # simulate 6:46
+    # lottery( bet = 1:6, n = 8 , replace = TRUE) #  simulate dice
+** Übung 10
+    sapply(X = c('tidyr','dplyr', 'ggplot2'), FUN = require, character.only=TRUE)
+    ##   tidyr   dplyr ggplot2
+    ##    TRUE    TRUE    TRUE
+    # als anonyme Funktion
+    sapply(X = c('tidyr','dplyr', 'ggplot2'), FUN = function(x) { require(x, character.only=TRUE) } )
+    ##   tidyr   dplyr ggplot2
+    ##    TRUE    TRUE    TRUE
+** Übung 11
+    ggplot(data=na.omit(Smoking)) +
+            aes(y=LE, x=CigCon) +
+            geom_point() +
+            geom_smooth(method="lm", se= F, aes(colour = "lm") ) +
+            geom_smooth(method="loess", se= F, aes(colour = "loess"))
+** Übung 12
+    r <- read.table('SmokingPopulation.txt')
+    a <- merge(Smoking,r, by='Country')
+    # 1.
+    ggplot(data=a) +
+      aes(y=LE, x=CigCon, size=X2004) +
+          geom_point( alpha=.5 )
+    # 2.
+    ggplot(data=a) +
+      aes(y=LE, x=CigCon, size=X2004) +
+      geom_point( alpha=.5 ) +
+      geom_text(aes( label=Country), size=2)
+    # 3.
+    ggplot(data=a) +
+      aes(y=LE, x=CigCon, color=HE, size=X2004) +
+      geom_point( alpha=.5 ) +
+      geom_text(aes( label=Country), size=2)
