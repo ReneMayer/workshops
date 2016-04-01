@@ -1,70 +1,79 @@
-* big data bis Data > RAM
-- memory.size()
+* big data
 
-** CRAN Task View: High-Performance and Parallel Computing with R
 
-** packages & Lösungen
+- 64bit & RAMâ†‘. Da R alles in den lokalen Speicher (RAM)  einliest, ist die GrÃ¶ÃŸe meiner DatensÃ¤tze zunÃ¤chst durch meinen RAM
+  begrenzt. Und im Gegensatz zu 32-bit-Systemen, kÃ¶nnen 64-Bit-Systeme
+  riesige Mengen an RAM verwalten. Also: 64bit & RAMâ†‘. Was passiert aber wenn ich eine Situation habe, in der 'Data > RAM' gilt.
 
-*** ohne eine Serverfarm, über virtuellen Speicher (hard drive chaching, swapping)
+** Eine Ãœbersicht zu den MÃ¶glichkeiten in R findet sich auf
+- CRAN Task View: High-Performance and Parallel Computing with R
+
+** packages & LÃ¶sungen
+
+*** virtueller Speicher (hard drive chaching, swapping)
 - ff & ffbase
-   - liest nur nötiges in den RAM (wie SAS)
+   - liest nur nÃ¶tiges in den RAM (wie SAS)
    - bspw. 40GB virtuellen Speicher (hard-drive caching) anfordern
      'memory.limit(size=40000)'
    - dank 'ffbase' kann 'ff' viele Operatoren des base Package. Auch
-     ein apply ist möglich! ffdfplyr
+     ein apply ist mÃ¶glich! ffdfplyr
 - bigmemory #  biganalytics::bigglm() ... pointer to a C++ matrix,
   data-types C-like specifications
 - data.table
-   - read.table für grosse Daten oft zu langsam. 'fread' aus
-     'data.table' löst dieses Problem.
+   - read.table fÃ¼r grosse Daten oft zu langsam. 'fread' aus
+     'data.table' lÃ¶st dieses Problem.
 
 
-*** ein Data-Warehouse verwenden: Daten werden auf einer Serverfarm gespeichert
-- RStudio Server (bspw. 12 GB oder mehr). Vorteile: versteht
+*** Data-Warehousing: Die Daten werden auf einer Serverfarm gespeichert
+- RStudio Server. Vorteile: versteht
   R-code: dplyr - select, filter u.s.w.; im Hintergrund wird der
-  dplyr-Code in SQL übersetzt.
-- hadoop-framework
+  dplyr-Code in SQL Ã¼bersetzt.
+- hadoop-framework.
   - RHadoop, rmr, ...
 - sparkR
 - PivotalR
 
 *** Drittanbieter
-- Relolution Analytics, RevoScaleR
+- Relolution Analytics: RevoScaleR
 
 * logs, logging
 
 ** savehistory()
-- in der Datei .Rprofile folgenden Codeschnipsel einfügen
+- in der Datei .Rprofile folgenden Codeschnipsel einfÃ¼gen
 - speichert alle verwendeten Befehle
 .Last = function() {
     if (interactive()) try(savehistory("~/.Rhistory"))
 }
-# speichert alle erzeugten Objekte
-sink()
 
-** spezielle packages für logs
+sink() # speichert alle erzeugten Objekte
+
+** spezielle packages fÃ¼r logs
 - track https://cran.r-project.org/web/packages/track/index.html
 - logging
 
-** R's Batch Modus verwenden; ähnlich stata log
+** R's Batch Modus verwenden; Ã¤hnlich stata log
 - R kann im so genannten Batch-Modus betrieben werden: Eine
-  (Windows-)Konsole wird geöffnet und ein R-Script wird von dort
-  ausgeführt.
+  (Windows-)Konsole wird geÃ¶ffnet und ein R-Script wird von dort
+  ausgefÃ¼hrt.
 
 - Bsp. MS Win (passen Sie gegebenenfalls den Pfad von R.exe an)
 "C:\Program Files\R\R-2.13.1\bin\R.exe" CMD BATCH --vanilla --slave "c:\my projects\my_script.R"
 
 ** Markdown
-In RStudio benennen Sie Ihre *.R-Datei in *.Rmd um, umgeben Sie den gesamten
-R-Code in drei führende Gegenapostrophe und drei endende Gegenapostrophe.
+In RStudio benennen Sie Ihre *.R-Datei in *.Rmd um. Beginnen Sie den gesamten
+R-Code mit drei fÃ¼hrende Gegenapostrophen und Beenden Sie den gesamten
+R-code mit drei endenden Gegenapostrophen.
+
+#+BEGIN_EXAMPLE
 
     ```{r}
     # r-code
     # ...
     ```
+#+END_EXAMPLE
 
-Dann drücken sie auf das Symbol mit der Wolle/Stricknadel und wählen
-'html', 'doc' oder 'pdf'. Ausserhalb von RStudio kann auch eine reine txt-datei erzeugt
+Dann drÃ¼cken sie auf das Symbol mit der Wolle/Stricknadel und wÃ¤hlen
+'html', 'doc' oder 'pdf'. Es kann auch eine reine txt-datei erzeugt
 werden.
 
 
