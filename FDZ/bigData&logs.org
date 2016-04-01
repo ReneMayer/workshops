@@ -1,0 +1,73 @@
+* big data bis Data > RAM
+- memory.size()
+
+** CRAN Task View: High-Performance and Parallel Computing with R
+
+** packages & Lösungen
+
+*** ohne eine Serverfarm, über virtuellen Speicher (hard drive chaching, swapping)
+- ff & ffbase
+   - liest nur nötiges in den RAM (wie SAS)
+   - bspw. 40GB virtuellen Speicher (hard-drive caching) anfordern
+     'memory.limit(size=40000)'
+   - dank 'ffbase' kann 'ff' viele Operatoren des base Package. Auch
+     ein apply ist möglich! ffdfplyr
+- bigmemory #  biganalytics::bigglm() ... pointer to a C++ matrix,
+  data-types C-like specifications
+- data.table
+   - read.table für grosse Daten oft zu langsam. 'fread' aus
+     'data.table' löst dieses Problem.
+
+
+*** ein Data-Warehouse verwenden: Daten werden auf einer Serverfarm gespeichert
+- RStudio Server (bspw. 12 GB oder mehr). Vorteile: versteht
+  R-code: dplyr - select, filter u.s.w.; im Hintergrund wird der
+  dplyr-Code in SQL übersetzt.
+- hadoop-framework
+  - RHadoop, rmr, ...
+- sparkR
+- PivotalR
+
+*** Drittanbieter
+- Relolution Analytics, RevoScaleR
+
+* logs, logging
+
+** savehistory()
+- in der Datei .Rprofile folgenden Codeschnipsel einfügen
+- speichert alle verwendeten Befehle
+.Last = function() {
+    if (interactive()) try(savehistory("~/.Rhistory"))
+}
+# speichert alle erzeugten Objekte
+sink()
+
+** spezielle packages für logs
+- track https://cran.r-project.org/web/packages/track/index.html
+- logging
+
+** R's Batch Modus verwenden; ähnlich stata log
+- R kann im so genannten Batch-Modus betrieben werden: Eine
+  (Windows-)Konsole wird geöffnet und ein R-Script wird von dort
+  ausgeführt.
+
+- Bsp. MS Win (passen Sie gegebenenfalls den Pfad von R.exe an)
+"C:\Program Files\R\R-2.13.1\bin\R.exe" CMD BATCH --vanilla --slave "c:\my projects\my_script.R"
+
+** Markdown
+In RStudio benennen Sie Ihre *.R-Datei in *.Rmd um, umgeben Sie den gesamten
+R-Code in drei führende Gegenapostrophe und drei endende Gegenapostrophe.
+
+```{r}
+# Anfang Code
+print(some_dataframe)
+
+# Ende Code
+
+```
+
+Dann drücken sie auf das Symbol mit der Wolle/Stricknadel und wählen
+'html', 'doc' oder 'pdf'. Ausserhalb von RStudio kann auch eine reine txt-datei erzeugt
+werden.
+
+

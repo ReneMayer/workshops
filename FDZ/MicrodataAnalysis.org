@@ -1,10 +1,10 @@
 ** R-packages
-  https://www.jstatsoft.org/article/view/v068i02
-  https://www.jstatsoft.org/article/view/v067i04
-  https://cran.r-project.org/web/packages/MicroDatosEs/index.html
-  https://www.unece.org/fileadmin/DAM/stats/documents/ece/ces/ge.46/2011/10_Meindl.pdf
-  https://cran.r-project.org/web/packages/dicionariosIBGE/index.html
-  https://cran.r-project.org/web/packages/synthpop/index.html
+ - https://www.jstatsoft.org/article/view/v068i02
+ - https://www.jstatsoft.org/article/view/v067i04
+ - https://cran.r-project.org/web/packages/MicroDatosEs/index.html
+ - https://www.unece.org/fileadmin/DAM/stats/documents/ece/ces/ge.46/2011/10_Meindl.pdf
+ - https://cran.r-project.org/web/packages/dicionariosIBGE/index.html
+ - https://cran.r-project.org/web/packages/synthpop/index.html
 
   library(sos)
   ???microdata

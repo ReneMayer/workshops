@@ -169,7 +169,7 @@ ${Z_{ij}\: mit\: i:1..5,j:1}$
     # ... gib mir die Zeilen eins bis acht von Spalte eins
     Z[1 : 5, 1]
     ## [1] 44.7 59.0 63.7 68.0 66.9
-** Matrix cont'd
+** Matrix cont
     (data.vector=c(L, cig, he, log.he))                  # Verlust der namen der Vektoren
     ##  [1]   44.7   59.0   63.7   68.0   66.9   60.8  393.9 1520.8 1464.0 2065.9
     ## [11] 1018.5  902.0   44.0  340.0 1126.6 1983.9 1532.8  174.8    3.2    4.6
@@ -575,7 +575,7 @@ ${Z_{ij}\: mit\: i:1..5,j:1}$
     ##      [,1] [,2]
     ## [1,]    1    2
     ## [2,]    3    4
-** defaults setzten cont'd
+** defaults setzten cont
     meine.matrix <- function(x = 1:4, ncol = 2, byrow = T, ...) {
         matrix(x, ncol = ncol, byrow = byrow, ...)
     }
@@ -726,7 +726,8 @@ ${Z_{ij}\: mit\: i:1..5,j:1}$
     ## [2,]   -2
     ## [3,]    4
 ** Übung 6
-    dd <- data.frame(    CigCon = c(394, 1521, 1464, 2066, 1019, 902),
+dd <- data.frame(
+                 CigCon = c(394, 1521, 1464, 2066, 1019, 902),
               Continent = c("Africa", "Asia", "Australia", "Europe", "NorthAmerica", "South America"),
                   LogHE = c(3, 5, 6, 7, 7, 5),
                      HE = c(44, 340, 1127, 1984, 1533, 175)
@@ -796,9 +797,11 @@ ${Z_{ij}\: mit\: i:1..5,j:1}$
     ##         unordered           ordered
     ## "contr.treatment"      "contr.poly"
 ** Übung 7.1 piping
-    library(ggplot2movies);library(data.table); library(dplyr)
+    library(ggplot2movies); library(dplyr)
     #1. piping
-    movies %>% select(title, rating, votes) %>%  arrange(desc( votes), desc(rating) )
+movies %>%
+    select(title, rating, votes) %>%
+    arrange(desc( votes), desc(rating) )
     ## Source: local data frame [58,788 x 3]
     ##
     ##                                                 title rating  votes
@@ -919,7 +922,7 @@ ${Z_{ij}\: mit\: i:1..5,j:1}$
     ## 4        Europe 68.00741  1.98393000 6.935007 5.660071
     ## 5 North America 66.91250  1.53275000 6.617409 2.790411
     ## 6 South America 60.75333  0.17475333 4.968074 2.471233
-** Übung 8 cont'd
+** Übung 8 cont
     # 3.
     library(tidyr)
     Smoking %>% na.omit %>%
@@ -945,7 +948,9 @@ ${Z_{ij}\: mit\: i:1..5,j:1}$
           prodplot( ~fHE+fCigCon) + aes(fill=fHE)
 ** Übung 9
     # 9.1
-    cd <- function(wd) {setwd(wd) }
+cd <- function(path) { setwd(path) }
+ l <- function(name) { library(name)}
+ l(dplyr)
     # 9.2
     lottery <- function(bet) {
         sample <- sample(1:49, 6, replace=F)
@@ -964,7 +969,7 @@ ${Z_{ij}\: mit\: i:1..5,j:1}$
     ##
     ## $bet
     ## [1] 1 2 3 4 5 6
-** Übung 9 cont'd
+** Übung 9 cont
     # 9.3
     lottery <- function(bet,  n=49, ...) {
         sample <- sample(1:n, 6, ... )
@@ -983,19 +988,23 @@ ${Z_{ij}\: mit\: i:1..5,j:1}$
     # lottery( bet = 1:6, n = 46 ) # simulate 6:46
     # lottery( bet = 1:6, n = 8 , replace = TRUE) #  simulate dice
 ** Übung 10
-    sapply(X = c('tidyr','dplyr', 'ggplot2'), FUN = require, character.only=TRUE)
+sapply(   X = c('tidyr','dplyr', 'ggplot2'),
+        FUN = require, character.only=TRUE)
     ##   tidyr   dplyr ggplot2
     ##    TRUE    TRUE    TRUE
     # als anonyme Funktion
-    sapply(X = c('tidyr','dplyr', 'ggplot2'), FUN = function(x) { require(x, character.only=TRUE) } )
+sapply(  X = c('tidyr','dplyr', 'ggplot2'),
+       FUN = function(x) {
+           require(x, character.only=TRUE)
+       } )
     ##   tidyr   dplyr ggplot2
     ##    TRUE    TRUE    TRUE
 ** Übung 11
-    ggplot(data=na.omit(Smoking)) +
-            aes(y=LE, x=CigCon) +
-            geom_point() +
-            geom_smooth(method="lm", se= F, aes(colour = "lm") ) +
-            geom_smooth(method="loess", se= F, aes(colour = "loess"))
+ggplot(data=na.omit(Smoking)) +
+  aes(y=LE, x=CigCon) +
+  geom_point() +
+  geom_smooth(method="lm", se= F, aes(colour = "lm") ) +
+  geom_smooth(method="loess", se= F, aes(colour = "loess"))
 ** Übung 12
     r <- read.table('SmokingPopulation.txt')
     a <- merge(Smoking,r, by='Country')
