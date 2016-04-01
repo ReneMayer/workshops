@@ -58,13 +58,10 @@ sink()
 In RStudio benennen Sie Ihre *.R-Datei in *.Rmd um, umgeben Sie den gesamten
 R-Code in drei führende Gegenapostrophe und drei endende Gegenapostrophe.
 
-```{r}
-# Anfang Code
-print(some_dataframe)
-
-# Ende Code
-
-```
+    ```{r}
+    # r-code
+    # ...
+    ```
 
 Dann drücken sie auf das Symbol mit der Wolle/Stricknadel und wählen
 'html', 'doc' oder 'pdf'. Ausserhalb von RStudio kann auch eine reine txt-datei erzeugt
